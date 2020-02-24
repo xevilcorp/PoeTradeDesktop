@@ -1,0 +1,30 @@
+﻿<Window x:Class="PoeTradeDesktop.UI.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uic="clr-namespace:PoeTradeDesktop.UI.Components"
+        xmlns:uiwp="clr-namespace:PoeTradeDesktop.Interface"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen" 
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip"
+        Width="460"
+        RenderOptions.BitmapScalingMode="NearestNeighbor"
+        MouseDown="Window_MouseDown"
+        Title="MainWindow" Height="750" >
+    <Grid>
+        <uiwp:WindowBackground/>
+        <DockPanel Margin="4">
+            <uiwp:WindowTopBar DockPanel.Dock="Top"/>
+            <Grid>
+                <uiwp:ContentBackground/>
+                <!--<WebBrowser x:Name="browser"  Margin="23" Loaded="Browser_Loaded" LoadCompleted="Browser_LoadCompleted"/>-->
+                <uic:SearchPage Margin="23"/>
+            </Grid>
+        </DockPanel>
+        
+    </Grid>
+</Window>

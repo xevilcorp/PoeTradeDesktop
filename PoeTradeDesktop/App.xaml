@@ -1,0 +1,31 @@
+﻿<Application x:Class="PoeTradeDesktop.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PoeTradeDesktop"
+             xmlns:converter="clr-namespace:PoeTradeDesktop.UI.Converters"
+             StartupUri="UI/Main.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <converter:TextToVisibilityConverter x:Key="TextToVisibility"/>
+            <converter:FrameTypeToSeparator x:Key="FrameTypeToSeparator"/>
+            <converter:PropertyTypeToBool x:Key="PropertyTypeToBool"/>
+            <converter:ValueStyleToColor x:Key="ValueStyleToColor"/>
+
+            <FontFamily x:Key="SmallCaps">UI/fonts/#Fontin SmallCaps</FontFamily>
+            <FontFamily x:Key="FontinBold">UI/fonts/#Fontin Bold</FontFamily>
+            <FontFamily x:Key="FontinRegular">UI/fonts/#Fontin Regular</FontFamily>
+            <FontFamily x:Key="Fontin">/PoeTradeDesktop;component/UI/Fonts/#Fontin</FontFamily> 
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="UI/Style/TextBox.xaml"/>
+                <ResourceDictionary Source="UI/Style/Animations.xaml"/>
+                <ResourceDictionary Source="UI/Style/ComboBox.xaml"/> 
+                <ResourceDictionary Source="UI/Style/Label.xaml"/>
+                <ResourceDictionary Source="UI/Style/Tab.xaml"/>
+                <ResourceDictionary Source="UI/Style/ToggleButton.xaml"/>
+                <ResourceDictionary Source="UI/Style/Button.xaml"/>
+                <ResourceDictionary Source="UI/Style/Scroll.xaml"/>
+                <ResourceDictionary Source="UI/Style/ListView.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

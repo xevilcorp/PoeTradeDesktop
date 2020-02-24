@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{67A5C5B3-8382-49D2-B487-6BE70E525C17}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PoeTradeDesktop</RootNamespace>
+    <AssemblyName>PoeTradeDesktop</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Controllers\BaseControl.cs" />
+    <Compile Include="Controllers\Filters\ItemTypeFilterControl.cs" />
+    <Compile Include="Controllers\SearchControl.cs" />
+    <Compile Include="Schemes\Enums\DisplayMode.cs" />
+    <Compile Include="Schemes\Enums\FrameType.cs" />
+    <Compile Include="Schemes\Enums\PropertyType.cs" />
+    <Compile Include="Schemes\Enums\ValueStyle.cs" />
+    <Compile Include="Schemes\Filtering\Query.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Crafted.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Explicit.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Item\Extended.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\Hashes.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Implicit.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\Listing.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Magnitude.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\Mods.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Item\Property.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Item\Requirement.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Item\Socket.cs" />
+    <Compile Include="Schemes\Searching\SearchResult.cs" />
+    <Compile Include="Schemes\Searching\SearchResultItem.cs" />
+    <Compile Include="Schemes\Searching\PreSearchResult.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Listing\Account.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\Item.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Listing\Price.cs" />
+    <Compile Include="Schemes\Filtering\Sort.cs" />
+    <Compile Include="Schemes\Filtering\Status.cs" />
+    <Compile Include="UI\Components\SearchResultItem\Properties.xaml.cs">
+      <DependentUpon>Properties.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\SearchResultItem\Requirements.xaml.cs">
+      <DependentUpon>Requirements.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\SearchResultItem\Sockets.xaml.cs">
+      <DependentUpon>Sockets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\SearchResultItem\TitleFrame.xaml.cs">
+      <DependentUpon>TitleFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Converters\FrameTypeToSeparator.cs" />
+    <Compile Include="UI\Converters\PropertyTypeToBool.cs" />
+    <Compile Include="UI\Converters\TextToVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\ValueStyleToColor.cs" />
+    <Compile Include="UI\Custom\TextHighlightTextBlock.cs" />
+    <Compile Include="UI\Components\WindowParts\ContentBackground.xaml.cs">
+      <DependentUpon>ContentBackground.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\Filters\FilterTabs\ItemType.xaml.cs">
+      <DependentUpon>ItemType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\WindowParts\WindowBackground.xaml.cs">
+      <DependentUpon>WindowBackground.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\WindowParts\WindowTopBar.xaml.cs">
+      <DependentUpon>WindowTopBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Schemes\Filtering\ItemCategory.cs" />
+    <Compile Include="Schemes\Filtering\Search.cs" />
+    <Compile Include="Schemes\Filtering\SearchItem.cs" />
+    <Compile Include="Util\Api.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Util\Benchmark.cs" />
+    <Page Include="UI\Components\SearchResultItem\Properties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\SearchResultItem\Requirements.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Components\SearchResultItem\Sockets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\SearchResultItem\TitleFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\WindowParts\ContentBackground.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\Filters\FilterTabs\ItemType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\SearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\WindowParts\WindowBackground.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\WindowParts\WindowTopBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Style\Animations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Style\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Style\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Style\Label.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Style\ListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Style\SavedSnippets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Style\Scroll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Style\Tab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Style\TextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Style\ToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Schemes\Filtering\League.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="UI\Fonts\Fontin.ttf" />
+    <Resource Include="UI\Images\filter_stats_icon_bw.png" />
+    <Resource Include="UI\Fonts\Fontin-SmallCaps.ttf" />
+    <Resource Include="UI\Fonts\Fontin-Bold.ttf" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\normal_banner.png" />
+    <Resource Include="UI\Images\sharp_banner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\close_btn_on.png" />
+    <Resource Include="UI\Images\topmenubar_left.png" />
+    <Resource Include="UI\Images\topmenubar_mid.png" />
+    <Resource Include="UI\Images\topmenubar_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\top_back_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\bottom_adorn_left.png" />
+    <Resource Include="UI\Images\bottom_adorn_mid.png" />
+    <Resource Include="UI\Images\bottom_adorn_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\adorn_border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\back_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\back_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\weapon_btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_1.png" />
+    <Resource Include="UI\Images\filter_damage_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_3.png" />
+    <Resource Include="UI\Images\filter_defense_icon.png" />
+    <Resource Include="UI\Images\Trash\btn_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_6.png" />
+    <Resource Include="UI\Images\Trash\btn_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_10.png" />
+    <Resource Include="UI\Images\Trash\btn_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_12.png" />
+    <Resource Include="UI\Images\Trash\btn_13.png" />
+    <Resource Include="UI\Images\Trash\btn_14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_15.png" />
+    <Resource Include="UI\Images\filter_map_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\filter_attributes_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\filter_links_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\filter_rarity_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_27.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_28.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_29.png" />
+    <Resource Include="UI\Images\Trash\btn_30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_31.png" />
+    <Resource Include="UI\Images\filter_misc_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_33.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_34.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\filter_settings_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\btn_37.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\filter_stats_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\checkbox_off.png" />
+    <Resource Include="UI\Images\checkbox_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\checkbox_on2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\search_separator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\Trash\search_separator2.png" />
+    <Resource Include="UI\Images\Trash\search_separator3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\search_separator4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\filter_attributes_icon_bw.png" />
+    <Resource Include="UI\Images\filter_damage_icon_bw.png" />
+    <Resource Include="UI\Images\filter_defense_icon_bw.png" />
+    <Resource Include="UI\Images\filter_links_icon_bw.png" />
+    <Resource Include="UI\Images\filter_map_icon_bw.png" />
+    <Resource Include="UI\Images\filter_misc_icon_bw.png" />
+    <Resource Include="UI\Images\filter_rarity_icon_bw.png" />
+    <Resource Include="UI\Images\filter_settings_icon_bw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\orb_of_scouring.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\combobox_indicator_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\scroll_bar_mid.png" />
+    <Resource Include="UI\Images\scroll_bar_side.png" />
+    <Resource Include="UI\Images\scroll_bar_thumb_mid.png" />
+    <Resource Include="UI\Images\scroll_bar_thumb_side.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\button_center.png" />
+    <Resource Include="UI\Images\button_side.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\button_center_off.png" />
+    <Resource Include="UI\Images\button_side_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\top_adorn_mid.png" />
+    <Resource Include="UI\Images\top_adorn_side.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\loading_gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\frame_5_left.png" />
+    <Resource Include="UI\Images\frame_5_mid.png" />
+    <Resource Include="UI\Images\frame_5_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\frame_3_left.png" />
+    <Resource Include="UI\Images\frame_3_mid.png" />
+    <Resource Include="UI\Images\frame_3_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\frame_0_left.png" />
+    <Resource Include="UI\Images\frame_0_mid.png" />
+    <Resource Include="UI\Images\frame_0_right.png" />
+    <Resource Include="UI\Images\frame_1_left.png" />
+    <Resource Include="UI\Images\frame_1_mid.png" />
+    <Resource Include="UI\Images\frame_1_right.png" />
+    <Resource Include="UI\Images\frame_2_left.png" />
+    <Resource Include="UI\Images\frame_2_mid.png" />
+    <Resource Include="UI\Images\frame_2_right.png" />
+    <Resource Include="UI\Images\frame_4_left.png" />
+    <Resource Include="UI\Images\frame_4_mid.png" />
+    <Resource Include="UI\Images\frame_4_right.png" />
+    <Resource Include="UI\Images\frame_7_left.png" />
+    <Resource Include="UI\Images\frame_7_mid.png" />
+    <Resource Include="UI\Images\frame_7_right.png" />
+    <Resource Include="UI\Images\frame_8_left.png" />
+    <Resource Include="UI\Images\frame_8_mid.png" />
+    <Resource Include="UI\Images\frame_8_right.png" />
+    <Resource Include="UI\Images\frame_9_left.png" />
+    <Resource Include="UI\Images\frame_9_mid.png" />
+    <Resource Include="UI\Images\frame_9_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\separator_0.png" />
+    <Resource Include="UI\Images\separator_1.png" />
+    <Resource Include="UI\Images\separator_2.png" />
+    <Resource Include="UI\Images\separator_3.png" />
+    <Resource Include="UI\Images\separator_4.png" />
+    <Resource Include="UI\Images\separator_5.png" />
+    <Resource Include="UI\Images\separator_7.png" />
+    <Resource Include="UI\Images\separator_8.png" />
+    <Resource Include="UI\Images\separator_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\socket_a.png" />
+    <Resource Include="UI\Images\socket_b.png" />
+    <Resource Include="UI\Images\socket_dv.png" />
+    <Resource Include="UI\Images\socket_g.png" />
+    <Resource Include="UI\Images\socket_r.png" />
+    <Resource Include="UI\Images\socket_v_link.png" />
+    <Resource Include="UI\Images\socket_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Images\socket_h_link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Hashes\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

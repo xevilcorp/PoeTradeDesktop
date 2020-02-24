@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="TextBox" x:Key="InfoTextBox" >
+        <Setter Property="FontFamily" Value="{StaticResource SmallCaps}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="#E0CEAD"/>
+        <Setter Property="Background" Value="#FF000000"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Grid>
+                        <TextBox x:Name="textBoxOk" BorderBrush="#88623B" Padding="{TemplateBinding Padding}" FontFamily="{TemplateBinding FontFamily}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}" FontSize="{TemplateBinding FontSize}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Margin="4 0 0 0" x:Name="labelOk" Visibility="Hidden" Foreground="{TemplateBinding Foreground}" Opacity="0.8" IsHitTestVisible="False" Content="{TemplateBinding Tag}" VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="textBoxOk" Property="Text" Value="{x:Null}">
+                            <Setter TargetName="labelOk" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger SourceName="textBoxOk" Property="Text" Value="">
+                            <Setter TargetName="labelOk" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger SourceName="textBoxOk"  Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="labelOk" Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

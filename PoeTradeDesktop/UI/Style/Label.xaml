@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PoeTradeDesktop.Style">
+    <Style x:Key="filterLabel" TargetType="Label">
+        <Setter Property="BorderThickness" Value="1 0 0 0"/>
+        <Setter Property="Background" Value="#0E0F10"/>
+        <Setter Property="Foreground" Value="#fff8e1"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="#634928"/>
+        <Setter Property="FontFamily" Value="{StaticResource SmallCaps}"/>
+    </Style>
+</ResourceDictionary>

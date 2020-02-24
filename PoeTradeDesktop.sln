@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29001.49
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoeTradeDesktop", "PoeTradeDesktop\PoeTradeDesktop.csproj", "{67A5C5B3-8382-49D2-B487-6BE70E525C17}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67A5C5B3-8382-49D2-B487-6BE70E525C17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67A5C5B3-8382-49D2-B487-6BE70E525C17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67A5C5B3-8382-49D2-B487-6BE70E525C17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67A5C5B3-8382-49D2-B487-6BE70E525C17}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B918BB1-2035-4E27-84F8-D9C0EE92201E}
+	EndGlobalSection
+EndGlobal

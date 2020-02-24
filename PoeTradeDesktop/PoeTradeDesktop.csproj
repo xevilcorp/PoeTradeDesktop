@@ -91,6 +91,9 @@
     <Compile Include="Schemes\Searching\_SearchResultItem\_Listing\Price.cs" />
     <Compile Include="Schemes\Filtering\Sort.cs" />
     <Compile Include="Schemes\Filtering\Status.cs" />
+    <Compile Include="UI\Components\SearchResultItem\ModsControl.xaml.cs">
+      <DependentUpon>ModsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Components\SearchResultItem\Properties.xaml.cs">
       <DependentUpon>Properties.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Util\Benchmark.cs" />
+    <Page Include="UI\Components\SearchResultItem\ModsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Components\SearchResultItem\Properties.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -479,8 +486,6 @@
   <ItemGroup>
     <Resource Include="UI\Images\socket_h_link.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Hashes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

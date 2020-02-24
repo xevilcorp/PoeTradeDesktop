@@ -172,7 +172,15 @@
             </TabItem>
         </TabControl>
 
-        <Image DockPanel.Dock="Top" Source="../Images/search_separator4.png"  Margin="-15 0 -10 0 " />
+        <!--<Image DockPanel.Dock="Top" Source="../Images/search_separator4.png"  Margin="-15 0 -10 0 " />-->
+        <Rectangle DockPanel.Dock="Top" Margin="0 1 0 0" Height="2">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF50453D" Offset="0"/>
+                    <GradientStop Color="#FF382A1C" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
 
         <Border BorderThickness="1" BorderBrush="#4988623B" CornerRadius="3" DockPanel.Dock="Bottom" Margin="0 3 0 0" Padding="2" Background="#36000000">
             <Button DockPanel.Dock="Bottom" Style="{StaticResource mainButton}" Margin="250 0 0 0" Command="{Binding SearchCMD}" Content="SEARCH" />
@@ -195,7 +203,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
-                            <Grid MinWidth="100" DockPanel.Dock="Left">
+                            <Grid DockPanel.Dock="Left" Margin="-5 0 -5 0">
                                 <Image Source="{Binding Item.Icon}" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="NearestNeighbor"  Stretch="None" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
                                     <Image.RenderTransform>
                                         <TransformGroup>
@@ -207,18 +215,21 @@
                             </Grid>
                             <StackPanel DockPanel.Dock="Right">
                                 <li:TitleFrame ItemName="{Binding Item.Name}" ItemFrameType="{Binding Item.FrameType}" ItemTypeLine="{Binding Item.TypeLine}" />
-                                <Border Background="#BB000000" Padding="3">
+                                <Border Background="#ff000000" Padding="3">
                                     <StackPanel>
                                         <li:Properties Source="{Binding Item.Properties}"/>
                                         <li:Requirements SeparatorType="{Binding Item.FrameType}" ItemLevel="{Binding Item.ILvl}" RequirementSource="{Binding Item.Requirements}"/>
+                                        <li:ModsControl SeparatorType="{Binding Item.FrameType}" ExplicitMods="{Binding Item.ExplicitMods}" Extended="{Binding Item.Extended}"/>
                                     </StackPanel>
                                 </Border>
                             </StackPanel>
                         </DockPanel>
+
+
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            
+
             <Grid HorizontalAlignment="Center"  VerticalAlignment="Center"  Visibility="{Binding SearchResultLoadingVisibility, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                 <Grid.Background>
                     <RadialGradientBrush>

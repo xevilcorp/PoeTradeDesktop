@@ -19,6 +19,8 @@ namespace PoeTradeDesktop.Schemes.Searching._SearchResultItem
         public List<Socket> Sockets { get; set; }
         public List<Requirement> Requirements { get; set; }
         public List<string> ExplicitMods { get; set; }
+        public List<string> ImplicitMods { get; set; }
+        public List<string> CraftedMods { get; set; }
         public Extended Extended { get; set; }
     }
 }

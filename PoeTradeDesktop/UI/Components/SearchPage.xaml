@@ -40,7 +40,48 @@
 
             <Popup x:Name="SearchTextListPopup" VerticalOffset="3" StaysOpen="False"  IsOpen="{Binding IsSearchTextListOpened, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlacementTarget="{Binding ElementName=searchBox}" Width="{Binding ElementName=searchBox, Path=ActualWidth}" >
                 <Border Background="#ee222222">
-                    <ListView x:Name="SearchTextList" SelectedItem="{Binding SelectedSearchTextResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True" BorderThickness="0" Background="Transparent" MaxHeight="120"  ItemsSource="{Binding SearchTextItemsResult, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" >
+                    <ListView x:Name="SearchTextList"  SelectedItem="{Binding SelectedSearchTextResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True" BorderThickness="0" Background="Transparent" MaxHeight="120"  ItemsSource="{Binding SearchTextItemsResult, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" >
+                        <ListView.Resources>
+                            <SolidColorBrush x:Key="Item.MouseOver.Background" Color="#FF3B454F"/>
+                            <SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="#FF3B454F"/>
+                            <SolidColorBrush x:Key="Item.SelectedActive.Background" Color="#FF3B454F"/>
+                            <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                                <ContentPresenter HorizontalAlignment="Stretch" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <MultiTrigger>
+                                                    <MultiTrigger.Conditions>
+                                                        <Condition Property="IsMouseOver" Value="True"/>
+                                                    </MultiTrigger.Conditions>
+                                                    <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.MouseOver.Background}"/>
+                                                </MultiTrigger>
+                                                <MultiTrigger>
+                                                    <MultiTrigger.Conditions>
+                                                        <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                                        <Condition Property="IsSelected" Value="True"/>
+                                                    </MultiTrigger.Conditions>
+                                                    <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Background}"/>
+                                                </MultiTrigger>
+                                                <MultiTrigger>
+                                                    <MultiTrigger.Conditions>
+                                                        <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                                                        <Condition Property="IsSelected" Value="True"/>
+                                                    </MultiTrigger.Conditions>
+                                                    <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Background}"/>
+                                                </MultiTrigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.Resources>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Background="Transparent" x:Name="SearchTextListItem" Orientation="Horizontal" Margin="-4 -1 -2 -1" MouseDown="SearchBoxListClicked">
@@ -189,7 +230,7 @@
         <Grid>
             <ListView HorizontalContentAlignment="Stretch" AlternationCount="2" ItemsSource="{Binding SearchResult.Items, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" VirtualizingPanel.ScrollUnit="Pixel" Name="lv" ScrollViewer.ScrollChanged="lv_ScrollChanged" BorderThickness="0">
                 <ListView.Resources>
-                    <Style TargetType="ListViewItem">
+                    <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
                         <Style.Triggers>
                             <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
                                 <Setter Property="Background" Value="#15ffffff" />

@@ -7,20 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <Style TargetType="ListView">
-            <Style.Resources>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="OverridesDefaultStyle" Value="True"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="ListViewItem">
-                                <ContentPresenter />
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Style.Resources>
-        </Style>
         <ControlTemplate TargetType="ToolTip" x:Key="modToolTip">
             <Border Background="#121212" MaxWidth="360" Padding="8" BorderThickness="1" BorderBrush="#444444">
                 <ContentPresenter/>
@@ -29,7 +15,12 @@
     </UserControl.Resources>
     <StackPanel>
         <Image HorizontalAlignment="Center" Source="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=SeparatorType, Converter={StaticResource FrameTypeToSeparator}}"/>
-        <ListView Background="Transparent" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ExplicitMods}"  BorderThickness="0">
+        <ListView Style="{StaticResource ListViewWithNoScroll}" Background="Transparent" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ExplicitMods}"  BorderThickness="0">
+            <ListView.Resources>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+            </ListView.Resources>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border x:Name="border">
@@ -38,7 +29,6 @@
                                 <Style.Triggers>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding Type, Converter={StaticResource PropertyTypeToBool}}" Value="True"/>
                                             <Condition Binding="{Binding ElementName=border, Path=IsMouseOver}" Value="True"/>
                                         </MultiDataTrigger.Conditions>
                                         <MultiDataTrigger.Setters>

@@ -43,16 +43,24 @@ namespace PoeTradeDesktop.UI.Components
             }
         }
 
+        SearchItem clickedItem = null;
         private void SearchBoxListClicked(object sender, MouseButtonEventArgs e)
         {
-            SearchTextList.SelectedItem = (((StackPanel)sender).DataContext) as SearchItem;
-            Keyboard.ClearFocus();
+            clickedItem = (((StackPanel)sender).DataContext) as SearchItem;
         }
 
         private void SearchBoxLostFocus(object sender, RoutedEventArgs e)
         {
             SearchTextListPopup.StaysOpen = false;
             SearchTextListPopup.IsOpen = false;
+
+
+            if (clickedItem != null)
+            {
+                SearchTextList.SelectedItem = clickedItem;
+                //clickedItem = null;
+            }
+
             if (searchBox.Text.Trim() != "")
             {
                 string newText = (DataContext as Controllers.SearchControl).SelectedSearchTextResult.Text;
@@ -61,6 +69,7 @@ namespace PoeTradeDesktop.UI.Components
                     searchBox.Text = newText;
                 }
             }
+
         }
 
         private void SearchBoxGotFocus(object sender, RoutedEventArgs e)

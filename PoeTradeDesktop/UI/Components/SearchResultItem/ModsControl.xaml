@@ -27,10 +27,8 @@
             </Border>
         </ControlTemplate>
     </UserControl.Resources>
-    
     <StackPanel>
         <Image HorizontalAlignment="Center" Source="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=SeparatorType, Converter={StaticResource FrameTypeToSeparator}}"/>
-
         <ListView Background="Transparent" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ExplicitMods}"  BorderThickness="0">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -52,10 +50,14 @@
                             </Style>
                         </Border.Style>
                         <Grid HorizontalAlignment="Center" MaxWidth="250">
-                            <TextBlock ToolTipService.HasDropShadow="True" ToolTipService.Placement="Bottom" ToolTipService.ShowDuration="10000" ToolTipService.InitialShowDelay="0" Foreground="#8888FF" TextTrimming="CharacterEllipsis" Text="{Binding}" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
+                            <TextBlock ToolTipService.HasDropShadow="True" ToolTipService.Placement="Top" ToolTipService.HorizontalOffset="-40" ToolTipService.VerticalOffset="-15" ToolTipService.ShowDuration="10000" ToolTipService.InitialShowDelay="0" Foreground="#8888FF" TextTrimming="CharacterEllipsis" Text="{Binding}" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
                                 <TextBlock.ToolTip>
-                                    <ToolTip Template="{StaticResource modToolTip}">
-                                        <TextBlock FontStyle="Italic" Text="{Binding}" Foreground="#8888FF" TextAlignment="Justify" TextWrapping="Wrap"/>
+                                    <ToolTip Template="{StaticResource modToolTip}" Opened="ToolTip_Opened">
+                                        <StackPanel>
+                                            <StackPanel/>
+                                            <Rectangle Height="1" Margin="0 4 0 4" Fill="#555555"/>
+                                            <TextBlock FontStyle="Italic" Text="{Binding}" Foreground="#8888FF" TextAlignment="Justify" TextWrapping="Wrap"/>
+                                        </StackPanel>
                                     </ToolTip>
                                 </TextBlock.ToolTip>
                             </TextBlock>

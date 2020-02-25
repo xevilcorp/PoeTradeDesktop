@@ -130,7 +130,7 @@ namespace PoeTradeDesktop.Controllers
             LoadLeaguesAsync();
             LoadSearchItemsAsync();
 
-            SearchResultLoadingVisibility = Visibility.Hidden;
+            SearchResultLoadingVisibility = Visibility.Collapsed;
             CheckSelectionCMD = new RelayCommand(CheckSelection);
             SearchCMD = new RelayCommand(Search);
             SearchResult = new SearchResult();
@@ -152,9 +152,8 @@ namespace PoeTradeDesktop.Controllers
         public ICommand SearchCMD { get; set; }
         private async void Search(object o)
         {
-            SearchResultLoadingVisibility = Visibility.Visible;
+            IsSearchResultLoading = true;
             SearchResult = null;
-            SearchResult sr = new SearchResult();
 
             CurrentSearch = new Search();
             CurrentSearch.Query.Status.Option = SelectedOnlineOption == 0 ? "online" : "any";
@@ -162,10 +161,10 @@ namespace PoeTradeDesktop.Controllers
             CurrentSearch.Sort.Price = "asc";
             CurrentSearch.League = SelectedLeague;
 
+            SearchResult sr = new SearchResult();
             await sr.Load(CurrentSearch);
             SearchResult = sr;
             IsSearchResultLoading = false;
-            SearchResultLoadingVisibility = Visibility.Hidden;
         }
 
         public async void SearchLoadMore()

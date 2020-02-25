@@ -43,7 +43,7 @@
                     <ListView x:Name="SearchTextList" SelectedItem="{Binding SelectedSearchTextResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True" BorderThickness="0" Background="Transparent" MaxHeight="120"  ItemsSource="{Binding SearchTextItemsResult, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" >
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel x:Name="SearchTextListItem"  Orientation="Horizontal" Margin="-4 -1 -2 -1" MouseDown="SearchBoxListClicked">
+                                <StackPanel Background="Transparent" x:Name="SearchTextListItem" Orientation="Horizontal" Margin="-4 -1 -2 -1" MouseDown="SearchBoxListClicked">
                                     <Rectangle Width="2">
                                         <Rectangle.Style>
                                             <Style TargetType="Rectangle">
@@ -224,52 +224,64 @@
                                 </Border>
                             </StackPanel>
                         </DockPanel>
-
-
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Grid HorizontalAlignment="Center"  VerticalAlignment="Center"  Visibility="{Binding SearchResultLoadingVisibility, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                <Grid.Background>
-                    <RadialGradientBrush>
-                        <GradientStop Color="#4C000000" Offset="0.401"/>
-                        <GradientStop Offset="1" Color="#00000000"/>
-                    </RadialGradientBrush>
-                </Grid.Background>
-                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
-                    <Grid Width="50" Height="50" >
-                        <Image x:Name="loadingGear" Source="../Images/loading_gear.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" RenderTransformOrigin="0.5,0.5">
-                            <Image.Style>
-                                <Style TargetType="Image">
-                                    <Setter Property="LayoutTransform">
-                                        <Setter.Value>
-                                            <RotateTransform Angle="0"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </Image.Style>
-                            <Image.Triggers>
-                                <EventTrigger RoutedEvent="Loaded">
-                                    <EventTrigger.Actions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation
-                                                Storyboard.TargetProperty="(LayoutTransform).(RotateTransform.Angle)"
-                                                From="0"
-                                                To="360"
-                                                RepeatBehavior="Forever"
-                                                Duration="0:0:3"/>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger.Actions>
-                                </EventTrigger>
-                            </Image.Triggers>
-                        </Image>
-                    </Grid>
-                    <Label FontSize="14" FontFamily="{StaticResource SmallCaps}" VerticalAlignment="Center" Foreground="Beige" Content="Loading..." Margin="-7 3 0 0"/>
-                </StackPanel>
-            </Grid>
+            <Label IsHitTestVisible="False"  HorizontalAlignment="Center"  VerticalAlignment="Center">
+                <Label.Style>
+                    <Style TargetType="Label" >
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsSearchResultLoading, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Grid>
+                                            <Grid.Background>
+                                                <RadialGradientBrush>
+                                                    <GradientStop Color="#4C000000" Offset="0.401"/>
+                                                    <GradientStop Offset="1" Color="#00000000"/>
+                                                </RadialGradientBrush>
+                                            </Grid.Background>
+                                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
+                                                <Grid Width="50" Height="50" >
+                                                    <Image x:Name="loadingGear" Source="../Images/loading_gear.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" RenderTransformOrigin="0.5,0.5">
+                                                        <Image.Style>
+                                                            <Style TargetType="Image">
+                                                                <Setter Property="LayoutTransform">
+                                                                    <Setter.Value>
+                                                                        <RotateTransform Angle="0"/>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Style>
+                                                        </Image.Style>
+                                                        <Image.Triggers>
+                                                            <EventTrigger RoutedEvent="Loaded">
+                                                                <EventTrigger.Actions>
+                                                                    <BeginStoryboard>
+                                                                        <Storyboard>
+                                                                            <DoubleAnimation
+                                                                            Storyboard.TargetProperty="(LayoutTransform).(RotateTransform.Angle)"
+                                                                            From="0"
+                                                                            To="360"
+                                                                            RepeatBehavior="Forever"
+                                                                            Duration="0:0:3"/>
+                                                                        </Storyboard>
+                                                                    </BeginStoryboard>
+                                                                </EventTrigger.Actions>
+                                                            </EventTrigger>
+                                                        </Image.Triggers>
+                                                    </Image>
+                                                </Grid>
+                                                <Label FontSize="14" FontFamily="{StaticResource SmallCaps}" VerticalAlignment="Center" Foreground="Beige" Content="Loading..." Margin="-7 3 0 0"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
         </Grid>
 
     </DockPanel>

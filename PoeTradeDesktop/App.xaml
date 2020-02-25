@@ -10,11 +10,13 @@
             <converter:FrameTypeToSeparator x:Key="FrameTypeToSeparator"/>
             <converter:PropertyTypeToBool x:Key="PropertyTypeToBool"/>
             <converter:ValueStyleToColor x:Key="ValueStyleToColor"/>
-
+            <converter:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+            
             <FontFamily x:Key="SmallCaps">UI/fonts/#Fontin SmallCaps</FontFamily>
             <FontFamily x:Key="FontinBold">UI/fonts/#Fontin Bold</FontFamily>
             <FontFamily x:Key="FontinRegular">UI/fonts/#Fontin Regular</FontFamily>
             <FontFamily x:Key="Fontin">/PoeTradeDesktop;component/UI/Fonts/#Fontin</FontFamily> 
+            
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="UI/Style/TextBox.xaml"/>
                 <ResourceDictionary Source="UI/Style/Animations.xaml"/>

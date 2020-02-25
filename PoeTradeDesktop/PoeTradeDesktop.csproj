@@ -106,6 +106,7 @@
     <Compile Include="UI\Components\SearchResultItem\TitleFrame.xaml.cs">
       <DependentUpon>TitleFrame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="UI\Converters\FrameTypeToSeparator.cs" />
     <Compile Include="UI\Converters\PropertyTypeToBool.cs" />
     <Compile Include="UI\Converters\TextToVisibilityConverter.cs" />

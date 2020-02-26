@@ -255,7 +255,7 @@
                                 <li:Sockets Source="{Binding Item.Sockets}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Grid>
                             <StackPanel DockPanel.Dock="Right">
-                                <li:TitleFrame ItemName="{Binding Item.Name}" ItemFrameType="{Binding Item.FrameType}" ItemTypeLine="{Binding Item.TypeLine}" />
+                                <li:TitleFrame ItemName="{Binding Item.Name}" Influences="{Binding Item.Influences}" ItemFrameType="{Binding Item.FrameType}" ItemTypeLine="{Binding Item.TypeLine}" />
                                 <Border Background="#ff000000" Padding="3">
                                     <StackPanel>
                                         <li:Properties Source="{Binding Item.Properties}"/>

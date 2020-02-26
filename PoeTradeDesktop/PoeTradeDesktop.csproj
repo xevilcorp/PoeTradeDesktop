@@ -72,6 +72,7 @@
     <Compile Include="Schemes\Enums\PropertyType.cs" />
     <Compile Include="Schemes\Enums\ValueStyle.cs" />
     <Compile Include="Schemes\Filtering\Query.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Item\Influences.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Crafted.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Enchant.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Explicit.cs" />
@@ -104,6 +105,9 @@
     </Compile>
     <Compile Include="UI\Components\SearchResultItem\Sockets.xaml.cs">
       <DependentUpon>Sockets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\SearchResultItem\StatsBar.xaml.cs">
+      <DependentUpon>StatsBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Components\SearchResultItem\TitleFrame.xaml.cs">
       <DependentUpon>TitleFrame.xaml</DependentUpon>
@@ -154,6 +158,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Components\SearchResultItem\Sockets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\SearchResultItem\StatsBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -489,6 +497,14 @@
   <ItemGroup>
     <Resource Include="UI\Images\socket_h_link.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="UI\Images\symbol_crusader.png" />
+    <Resource Include="UI\Images\symbol_elder.png" />
+    <Resource Include="UI\Images\symbol_fractured.png" />
+    <Resource Include="UI\Images\symbol_hunter.png" />
+    <Resource Include="UI\Images\symbol_redeemer.png" />
+    <Resource Include="UI\Images\symbol_shaper.png" />
+    <Resource Include="UI\Images\symbol_warlord.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

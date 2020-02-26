@@ -12,6 +12,7 @@ namespace PoeTradeDesktop.Schemes.Searching._SearchResultItem
         public string TypeLine { get; set; }
         public bool Corrupted { get; set; }
         public bool Identified { get; set; }
+        public Influences Influences { get; set; }
         public int FrameType { get; set; }
         public int MaxStackSize { get; set; }
         public int StackSize { get; set; }

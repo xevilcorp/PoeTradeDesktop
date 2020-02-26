@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              RenderOptions.BitmapScalingMode="LowQuality"
              mc:Ignorable="d" d:DesignWidth="400" Background="Black">
-    <Label Padding="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+    <Label x:Name="lbl" Padding="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
         <Label.Style>
             <Style TargetType="Label">
                 <Style.Triggers>
@@ -29,6 +29,8 @@
                                             </Rectangle.Fill>
                                         </Rectangle>
                                         <Image Source="../../Images/frame_0_right.png" Grid.Column="2"/>
+                                        <Image x:Name="InfluenceTwo" VerticalAlignment="Center" HorizontalAlignment="left" Grid.Column="2"/>
+
                                     </Grid>
                                     <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ItemTypeLine}" TextAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource SmallCaps}" Margin="0 1 0 0" Foreground="#FFC8C8C8" FontSize="14"/>
                                 </Grid>

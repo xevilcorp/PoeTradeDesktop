@@ -158,7 +158,7 @@ namespace PoeTradeDesktop.Controllers
             CurrentSearch = new Search();
             CurrentSearch.Query.Status.Option = SelectedOnlineOption == 0 ? "online" : "any";
             CurrentSearch.Query.Type = SelectedSearchTextResult.Type;
-            CurrentSearch.Sort.Price = "asc";
+            CurrentSearch.Sort.Price = "desc";
             CurrentSearch.League = SelectedLeague;
 
             SearchResult sr = new SearchResult();

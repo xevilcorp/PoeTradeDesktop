@@ -2,7 +2,7 @@
 
 namespace PoeTradeDesktop.Schemes.Searching._SearchResultItem._Item._Extended._Mods
 {
-    public class Implicit
+    public class Enchant
     {
         public string Name { get; set; }
         public string Tier { get; set; }

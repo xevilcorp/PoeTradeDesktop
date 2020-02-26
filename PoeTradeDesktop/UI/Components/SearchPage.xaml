@@ -260,7 +260,7 @@
                                     <StackPanel>
                                         <li:Properties Source="{Binding Item.Properties}"/>
                                         <li:Requirements SeparatorType="{Binding Item.FrameType}" ItemLevel="{Binding Item.ILvl}" RequirementSource="{Binding Item.Requirements}"/>
-                                        <li:ModsControl SeparatorType="{Binding Item.FrameType}" ExplicitMods="{Binding Item.ExplicitMods}" Extended="{Binding Item.Extended}"/>
+                                        <li:ModsControl SeparatorType="{Binding Item.FrameType}" ImplicitMods="{Binding Item.ImplicitMods}" CraftedMods="{Binding Item.CraftedMods}" EnchantMods="{Binding Item.EnchantMods}" ExplicitMods="{Binding Item.ExplicitMods}" Extended="{Binding Item.Extended}"/>
                                     </StackPanel>
                                 </Border>
                             </StackPanel>

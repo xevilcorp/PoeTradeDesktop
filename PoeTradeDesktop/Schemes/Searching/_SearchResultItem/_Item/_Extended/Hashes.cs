@@ -7,5 +7,7 @@ namespace PoeTradeDesktop.Schemes.Searching._SearchResultItem._Item._Extended
         public List<List<object>> Implicit { get; set; }
         public List<List<object>> Explicit { get; set; }
         public List<List<object>> Crafted { get; set; }
+        public List<List<object>> Enchant { get; set; }
+
     }
 }

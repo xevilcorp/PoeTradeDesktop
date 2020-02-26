@@ -13,9 +13,10 @@
             </Border>
         </ControlTemplate>
     </UserControl.Resources>
-    <StackPanel>
-        <Image HorizontalAlignment="Center" Source="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=SeparatorType, Converter={StaticResource FrameTypeToSeparator}}"/>
-        <ListView Style="{StaticResource ListViewWithNoScroll}" Background="Transparent" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ExplicitMods}"  BorderThickness="0">
+    <StackPanel x:Name="panel">
+        <Image x:Name="separatorOne" HorizontalAlignment="Center" Source="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=SeparatorType, Converter={StaticResource FrameTypeToSeparator}}"/>
+        <!--Enchant Mods-->
+        <ListView x:Name="enchantList" Style="{StaticResource ListViewWithNoScroll}" Background="Transparent" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=EnchantMods}"  BorderThickness="0">
             <ListView.Resources>
                 <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
                     <Setter Property="Background" Value="Transparent"/>
@@ -25,7 +26,50 @@
                 <DataTemplate>
                     <Border x:Name="border">
                         <Border.Style>
-                            <Style TargetType="Border" >
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding ElementName=border, Path=IsMouseOver}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <MultiDataTrigger.Setters>
+                                            <Setter Property="Background" Value="#10ffffff"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                        </MultiDataTrigger.Setters>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Grid HorizontalAlignment="Center" MaxWidth="250">
+                            <TextBlock ToolTipService.HasDropShadow="True" ToolTipService.Placement="Top" ToolTipService.HorizontalOffset="-40" ToolTipService.VerticalOffset="-15" ToolTipService.ShowDuration="10000" ToolTipService.InitialShowDelay="0" Foreground="#B4B4FF" TextTrimming="CharacterEllipsis" Text="{Binding}" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
+                                <TextBlock.ToolTip>
+                                    <ToolTip Template="{StaticResource modToolTip}" Tag="Enchant" Opened="ToolTipOpened">
+                                        <StackPanel>
+                                            <StackPanel/>
+                                            <Rectangle Height="1" Margin="0 4 0 4" Fill="#555555"/>
+                                            <TextBlock FontStyle="Italic" Text="{Binding}" Foreground="#8888FF" TextAlignment="Justify" TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Image x:Name="separatorTwo" HorizontalAlignment="Center" Source="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=SeparatorType, Converter={StaticResource FrameTypeToSeparator}}"/>
+        <!--Implicit Mods-->
+        <ListView x:Name="implicitList" Style="{StaticResource ListViewWithNoScroll}" Background="Transparent" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ImplicitMods}"  BorderThickness="0">
+            <ListView.Resources>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+            </ListView.Resources>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border x:Name="border">
+                        <Border.Style>
+                            <Style TargetType="Border">
                                 <Style.Triggers>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
@@ -42,7 +86,92 @@
                         <Grid HorizontalAlignment="Center" MaxWidth="250">
                             <TextBlock ToolTipService.HasDropShadow="True" ToolTipService.Placement="Top" ToolTipService.HorizontalOffset="-40" ToolTipService.VerticalOffset="-15" ToolTipService.ShowDuration="10000" ToolTipService.InitialShowDelay="0" Foreground="#8888FF" TextTrimming="CharacterEllipsis" Text="{Binding}" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
                                 <TextBlock.ToolTip>
-                                    <ToolTip Template="{StaticResource modToolTip}" Opened="ToolTip_Opened">
+                                    <ToolTip Template="{StaticResource modToolTip}" Tag="Implicit" Opened="ToolTipOpened">
+                                        <StackPanel>
+                                            <StackPanel/>
+                                            <Rectangle Height="1" Margin="0 4 0 4" Fill="#555555"/>
+                                            <TextBlock FontStyle="Italic" Text="{Binding}" Foreground="#8888FF" TextAlignment="Justify" TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Image x:Name="separatorThree" HorizontalAlignment="Center" Source="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=SeparatorType, Converter={StaticResource FrameTypeToSeparator}}"/>
+        <!--Explicit Mods-->
+        <ListView x:Name="explicitList" Style="{StaticResource ListViewWithNoScroll}" Background="Transparent" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ExplicitMods}"  BorderThickness="0">
+            <ListView.Resources>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+            </ListView.Resources>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border x:Name="border">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding ElementName=border, Path=IsMouseOver}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <MultiDataTrigger.Setters>
+                                            <Setter Property="Background" Value="#10ffffff"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                        </MultiDataTrigger.Setters>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Grid HorizontalAlignment="Center" MaxWidth="250">
+                            <TextBlock ToolTipService.HasDropShadow="True" ToolTipService.Placement="Top" ToolTipService.HorizontalOffset="-40" ToolTipService.VerticalOffset="-15" ToolTipService.ShowDuration="10000" ToolTipService.InitialShowDelay="0" Foreground="#8888FF" TextTrimming="CharacterEllipsis" Text="{Binding}" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
+                                <TextBlock.ToolTip>
+                                    <ToolTip Template="{StaticResource modToolTip}" Tag="Explicit" Opened="ToolTipOpened">
+                                        <StackPanel>
+                                            <StackPanel/>
+                                            <Rectangle Height="1" Margin="0 4 0 4" Fill="#555555"/>
+                                            <TextBlock FontStyle="Italic" Text="{Binding}" Foreground="#8888FF" TextAlignment="Justify" TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!--Crafted Mods-->
+        <ListView x:Name="craftedList" Style="{StaticResource ListViewWithNoScroll}" Background="Transparent" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=CraftedMods}"  BorderThickness="0">
+            <ListView.Resources>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+            </ListView.Resources>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border x:Name="border">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding ElementName=border, Path=IsMouseOver}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <MultiDataTrigger.Setters>
+                                            <Setter Property="Background" Value="#10ffffff"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                        </MultiDataTrigger.Setters>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Grid HorizontalAlignment="Center" MaxWidth="250">
+                            <TextBlock ToolTipService.HasDropShadow="True" ToolTipService.Placement="Top" ToolTipService.HorizontalOffset="-40" ToolTipService.VerticalOffset="-15" ToolTipService.ShowDuration="10000" ToolTipService.InitialShowDelay="0" Foreground="#B4B4FF" TextTrimming="CharacterEllipsis" Text="{Binding}" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
+                                <TextBlock.ToolTip>
+                                    <ToolTip Template="{StaticResource modToolTip}" Tag="Crafted" Opened="ToolTipOpened">
                                         <StackPanel>
                                             <StackPanel/>
                                             <Rectangle Height="1" Margin="0 4 0 4" Fill="#555555"/>

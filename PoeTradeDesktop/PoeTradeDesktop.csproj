@@ -73,6 +73,7 @@
     <Compile Include="Schemes\Enums\ValueStyle.cs" />
     <Compile Include="Schemes\Filtering\Query.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Crafted.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Enchant.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Explicit.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\Extended.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\Hashes.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Schemes\Searching\SearchResult.cs" />
     <Compile Include="Schemes\Searching\SearchResultItem.cs" />
     <Compile Include="Schemes\Searching\PreSearchResult.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\ModDetails.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Listing\Account.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\Item.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Listing\Price.cs" />

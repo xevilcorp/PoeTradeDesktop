@@ -263,6 +263,8 @@
                                         <li:ModsControl SeparatorType="{Binding Item.FrameType}" ImplicitMods="{Binding Item.ImplicitMods}" CraftedMods="{Binding Item.CraftedMods}" EnchantMods="{Binding Item.EnchantMods}" ExplicitMods="{Binding Item.ExplicitMods}" Extended="{Binding Item.Extended}"/>
                                     </StackPanel>
                                 </Border>
+                                <li:StatsBar Background="Black" Margin="0 2 0 0" Extended="{Binding Item.Extended}"/>
+
                             </StackPanel>
                         </DockPanel>
                     </DataTemplate>

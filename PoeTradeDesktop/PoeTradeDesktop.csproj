@@ -262,9 +262,12 @@
     <Resource Include="UI\Images\filter_stats_icon_bw.png" />
     <Resource Include="UI\Fonts\Fontin-SmallCaps.ttf" />
     <Resource Include="UI\Fonts\Fontin-Bold.ttf" />
-    <Resource Include="Data\currency.json">
+    <None Include="Data\currency.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </None>
+    <None Include="Data\item-category.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -514,8 +517,6 @@
     <Resource Include="UI\Images\symbol_shaper.png" />
     <Resource Include="UI\Images\symbol_warlord.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\ImageCache\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

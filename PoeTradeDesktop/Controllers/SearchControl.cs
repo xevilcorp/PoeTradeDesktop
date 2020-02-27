@@ -109,11 +109,11 @@ namespace PoeTradeDesktop.Controllers
             set { searchResult = value; RaisePropertyChanged("SearchResult"); }
         }
 
-        private Search currentSearch;
-        public Search CurrentSearch
+        private Search searchFilters;
+        public Search SearchFilters
         {
-            get { return currentSearch; }
-            set { currentSearch = value; RaisePropertyChanged("CurrentSearch"); }
+            get { return searchFilters; }
+            set { searchFilters = value; RaisePropertyChanged("SearchFilters"); }
         }
 
         private Visibility searchResultLoadingVisibility;
@@ -155,14 +155,22 @@ namespace PoeTradeDesktop.Controllers
             IsSearchResultLoading = true;
             SearchResult = null;
 
-            CurrentSearch = new Search();
-            CurrentSearch.Query.Status.Option = SelectedOnlineOption == 0 ? "online" : "any";
-            CurrentSearch.Query.Type = SelectedSearchTextResult.Type;
-            CurrentSearch.Sort.Price = "desc";
-            CurrentSearch.League = SelectedLeague;
+            SearchFilters = new Search();
+
+            Query query = new Query();
+            query.Status.Option = SelectedOnlineOption == 0 ? "online" : "any";
+            query.Type = SelectedSearchTextResult.Type;
+            query.Name = SelectedSearchTextResult.Name;
+            SearchFilters.Query = query;
+
+            Sort sort = new Sort();
+            sort.Price = "desc";
+            SearchFilters.Sort = sort;
+
+            SearchFilters.League = SelectedLeague;
 
             SearchResult sr = new SearchResult();
-            await sr.Load(CurrentSearch);
+            await sr.Load(SearchFilters);
             SearchResult = sr;
             IsSearchResultLoading = false;
         }

@@ -11,5 +11,11 @@ namespace PoeTradeDesktop
             FileInfo file = new FileInfo(Path.Combine(Environment.CurrentDirectory, $@"ImageCache\"));
             file.Directory.Create();
         }
+
+        private void UpdateData()
+        {
+            FileInfo file = new FileInfo(Path.Combine(Environment.CurrentDirectory, $@"Data\"));
+
+        }
     }
 }

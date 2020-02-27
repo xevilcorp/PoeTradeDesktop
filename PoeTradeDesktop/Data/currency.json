@@ -1,0 +1,70 @@
+[
+  {
+    "id": null,
+    "text": "Chaos Orb Equivalent"
+  },
+  {
+    "id": "blessed",
+    "text": "Blessed Orb"
+  },
+  {
+    "id": "chisel",
+    "text": "Cartographer's Chisel"
+  },
+  {
+    "id": "chaos",
+    "text": "Chaos Orb"
+  },
+  {
+    "id": "chrom",
+    "text": "Chromatic Orb"
+  },
+  {
+    "id": "divine",
+    "text": "Divine Orb"
+  },
+  {
+    "id": "exa",
+    "text": "Exalted Orb"
+  },
+  {
+    "id": "gcp",
+    "text": "Gemcutter's Prism"
+  },
+  {
+    "id": "jew",
+    "text": "Jeweller's Orb"
+  },
+  {
+    "id": "scour",
+    "text": "Orb of Scouring"
+  },
+  {
+    "id": "regret",
+    "text": "Orb of Regret"
+  },
+  {
+    "id": "fusing",
+    "text": "Orb of Fusing"
+  },
+  {
+    "id": "chance",
+    "text": "Orb of Chance"
+  },
+  {
+    "id": "alt",
+    "text": "Orb of Alteration"
+  },
+  {
+    "id": "alch",
+    "text": "Orb of Alchemy"
+  },
+  {
+    "id": "regal",
+    "text": "Regal Orb"
+  },
+  {
+    "id": "vaal",
+    "text": "Vaal Orb"
+  }
+]

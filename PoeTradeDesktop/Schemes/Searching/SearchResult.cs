@@ -46,7 +46,6 @@ namespace PoeTradeDesktop.Schemes.Searching
 
                 TotalLoaded += size;
                 TotalAvailableToLoad = PreSearchResult.Total - TotalLoaded;
-
             }
         }
     }

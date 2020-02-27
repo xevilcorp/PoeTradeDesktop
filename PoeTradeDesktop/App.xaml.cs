@@ -1,11 +1,15 @@
-﻿using System.Windows;
+﻿using System;
+using System.IO;
+using System.Windows;
 
 namespace PoeTradeDesktop
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            FileInfo file = new FileInfo(Path.Combine(Environment.CurrentDirectory, $@"ImageCache\"));
+            file.Directory.Create();
+        }
     }
 }

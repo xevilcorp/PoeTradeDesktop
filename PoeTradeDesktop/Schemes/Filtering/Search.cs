@@ -5,9 +5,9 @@ namespace PoeTradeDesktop.Schemes
     public class Search
     {
         [JsonIgnore]
-        public League League = new League();
+        public League League { get; set; }
 
-        public Query Query = new Query();
-        public Sort Sort = new Sort();
+        public Query Query { get; set; }
+        public Sort Sort { get; set; }
     }
 }

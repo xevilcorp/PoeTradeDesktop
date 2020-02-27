@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Windows;
 
 namespace PoeTradeDesktop
@@ -10,12 +11,22 @@ namespace PoeTradeDesktop
         {
             FileInfo file = new FileInfo(Path.Combine(Environment.CurrentDirectory, $@"ImageCache\"));
             file.Directory.Create();
+
+            UpdateData();
         }
 
         private void UpdateData()
         {
-            FileInfo file = new FileInfo(Path.Combine(Environment.CurrentDirectory, $@"Data\"));
+            string folderPath = Path.Combine(Environment.CurrentDirectory, $@"Data\");
+            FileInfo file = new FileInfo(folderPath);
+            file.Directory.Create();
 
+            string url, path; 
+            WebClient client = new WebClient();
+
+            url = "https://raw.githubusercontent.com/xEvilCorp/PoeTradeDesktop/master/PoeTradeDesktop/Data/item-category.json";
+            path = Path.Combine(folderPath, "item-category.json");
+            client.DownloadFile(url, path);
         }
     }
 }

@@ -1,0 +1,22 @@
+[{
+    id: null,
+    text: e.translate("Any")
+}, {
+    id: "normal",
+    text: e.translate("Normal")
+}, {
+    id: "magic",
+    text: e.translate("Magic")
+}, {
+    id: "rare",
+    text: e.translate("Rare")
+}, {
+    id: "unique",
+    text: e.translate("Unique")
+}, {
+    id: "uniquefoil",
+    text: e.translate("Unique (Relic)")
+}, {
+    id: "nonunique",
+    text: e.translate("Any Non-Unique")
+}]

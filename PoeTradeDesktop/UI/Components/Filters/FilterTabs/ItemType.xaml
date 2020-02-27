@@ -37,16 +37,8 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Label x:Name="ItemCategoryLabel" Style="{StaticResource filterLabel}" Content="Item Category" Margin="0 0 3 0"/>
-                <ComboBox SelectedIndex="0" Grid.Column="1" IsEditable="True" >
-                    <ComboBoxItem>Any</ComboBoxItem>
-                    <ComboBoxItem>Normal</ComboBoxItem>
-                    <ComboBoxItem>Magic</ComboBoxItem>
-                    <ComboBoxItem>Rare</ComboBoxItem>
-                    <ComboBoxItem>Unique</ComboBoxItem>
-                    <ComboBoxItem>Unique (Relic)</ComboBoxItem>
-                    <ComboBoxItem>Any Non-Unique</ComboBoxItem>
-                </ComboBox>
-                <Label Style="{StaticResource filterLabel}" Content="Item Rarity" Margin="0 3 3 0" Grid.Row="1"/>
+            <ComboBox DisplayMemberPath="Text" ItemsSource="{Binding Categories, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" Grid.Column="1" IsEditable="True" />
+            <Label Style="{StaticResource filterLabel}" Content="Item Rarity" Margin="0 3 3 0" Grid.Row="1"/>
                 <ComboBox  SelectedIndex="0" Grid.Column="1" IsEditable="True" Grid.Row="1" Margin="0 3 0 0">
                     <ComboBoxItem>Any</ComboBoxItem>
                     <ComboBoxItem>Normal</ComboBoxItem>

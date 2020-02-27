@@ -22,6 +22,20 @@ namespace PoeTradeDesktop.Controllers.Filters
             set { categories = value; RaisePropertyChanged("Categories"); } 
         }
 
+        private List<ItemRarity> rarities;
+        public List<ItemRarity> Rarities
+        {
+            get { return rarities; }
+            set { rarities = value; RaisePropertyChanged("Rarities"); }
+        }
+
+        private ItemRarity selectedRarity;
+        public ItemRarity SelectedRarity
+        {
+            get { return selectedRarity; }
+            set { selectedRarity = value; RaisePropertyChanged("SelectedRarity"); }
+        }
+
         private ItemCategory selectedCategory;
         public ItemCategory SelectedCategory
         {
@@ -42,6 +56,7 @@ namespace PoeTradeDesktop.Controllers.Filters
         public async void LoadSources()
         {
             Categories = await ItemCategory.LoadAsync();
+            Rarities = await ItemRarity.LoadAsync();
         }
 
         public void HideContent(object o)

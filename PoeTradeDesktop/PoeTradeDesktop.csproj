@@ -75,6 +75,7 @@
     <Compile Include="Schemes\Enums\FrameType.cs" />
     <Compile Include="Schemes\Enums\PropertyType.cs" />
     <Compile Include="Schemes\Enums\ValueStyle.cs" />
+    <Compile Include="Schemes\Filtering\ItemRarity.cs" />
     <Compile Include="Schemes\Filtering\Query.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\Influences.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Crafted.cs" />

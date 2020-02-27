@@ -1,22 +1,22 @@
 [{
     id: null,
-    text: e.translate("Any")
+    text: "Any"
 }, {
     id: "normal",
-    text: e.translate("Normal")
+    text: "Normal"
 }, {
     id: "magic",
-    text: e.translate("Magic")
+    text: "Magic"
 }, {
     id: "rare",
-    text: e.translate("Rare")
+    text: "Rare"
 }, {
     id: "unique",
-    text: e.translate("Unique")
+    text: "Unique"
 }, {
     id: "uniquefoil",
-    text: e.translate("Unique (Relic)")
+    text: "Unique (Relic)"
 }, {
     id: "nonunique",
-    text: e.translate("Any Non-Unique")
+    text: "Any Non-Unique"
 }]

@@ -58,7 +58,7 @@ namespace PoeTradeDesktop.UI.Components
             if (clickedItem != null)
             {
                 SearchTextList.SelectedItem = clickedItem;
-                //clickedItem = null;
+                clickedItem = null;
             }
 
             if (searchBox.Text.Trim() != "")

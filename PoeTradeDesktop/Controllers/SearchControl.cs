@@ -1,5 +1,7 @@
 ﻿using PoeTradeDesktop.Models;
 using PoeTradeDesktop.Schemes;
+using PoeTradeDesktop.Schemes.PreSearching;
+using PoeTradeDesktop.Schemes.PreSearching._PreSearch;
 using PoeTradeDesktop.Schemes.Searching;
 using System;
 using System.Collections.Generic;
@@ -71,7 +73,13 @@ namespace PoeTradeDesktop.Controllers
         public SearchItem SelectedSearchTextResult
         {
             get { return selectedSearchTextResult; }
-            set { selectedSearchTextResult = value; RaisePropertyChanged("SelectedSearchTextResult"); }
+            set { 
+                selectedSearchTextResult = value; 
+                if(selectedSearchTextResult.Name.IndexOf("Geofri") != -1)
+                {
+                    int x = 1;
+                }
+                RaisePropertyChanged("SelectedSearchTextResult"); }
         }
 
         private bool isSearchTextListOpened;
@@ -109,11 +117,11 @@ namespace PoeTradeDesktop.Controllers
             set { searchResult = value; RaisePropertyChanged("SearchResult"); }
         }
 
-        private Search searchFilters;
-        public Search SearchFilters
+        private PreSearch preSearch;
+        public PreSearch PreSearch
         {
-            get { return searchFilters; }
-            set { searchFilters = value; RaisePropertyChanged("SearchFilters"); }
+            get { return preSearch; }
+            set { preSearch = value; RaisePropertyChanged("PreSearch"); }
         }
 
         private Visibility searchResultLoadingVisibility;
@@ -149,28 +157,44 @@ namespace PoeTradeDesktop.Controllers
             }
         }
 
+        private dynamic AddTabFilters()
+        {
+            return new
+            {
+                type_filters = ItemTypeFilterEnabled ? ((Filters.ItemTypeFilterControl)((Interface.Filters.ItemType)ItemTypeFilterTabContent).DataContext).GetFilter() : null
+            };
+        }
+
         public ICommand SearchCMD { get; set; }
         private async void Search(object o)
         {
             IsSearchResultLoading = true;
             SearchResult = null;
 
-            SearchFilters = new Search();
+            PreSearch = new PreSearch();
 
-            Query query = new Query();
-            query.Status.Option = SelectedOnlineOption == 0 ? "online" : "any";
-            query.Type = SelectedSearchTextResult.Type;
-            query.Name = SelectedSearchTextResult.Name;
-            SearchFilters.Query = query;
+            PreSearch.League = SelectedLeague;
+
+            dynamic q = new
+            {
+                type = SelectedSearchTextResult != null ? SelectedSearchTextResult.Type : null,
+                name = SelectedSearchTextResult != null ? SelectedSearchTextResult.Name : null,
+                status = new {
+                    option = SelectedOnlineOption == 0 ? "online" : "any"
+                },
+                filters = AddTabFilters()
+            };
+
+            
+
+            PreSearch.Query = q;
 
             Sort sort = new Sort();
             sort.Price = "desc";
-            SearchFilters.Sort = sort;
-
-            SearchFilters.League = SelectedLeague;
+            PreSearch.Sort = sort;
 
             SearchResult sr = new SearchResult();
-            await sr.Load(SearchFilters);
+            await sr.Load(PreSearch);
             SearchResult = sr;
             IsSearchResultLoading = false;
         }
@@ -202,14 +226,29 @@ namespace PoeTradeDesktop.Controllers
 
         private void PerformSearch()
         {
+           
             if (SearchText.Trim() != "")
             {
                 List<SearchItem> si = SearchTextItems.Where(x => x.Text.ToUpper().IndexOf(SearchText.ToUpper()) != -1).ToList();
                 if (si.Count != 0)
                 {
-                    SelectedSearchTextResult = si.First();
+                    if (SelectedSearchTextResult != null)
+                    {
+                        if (SelectedSearchTextResult.Name != null)
+                        {
+                            SelectedSearchTextResult = si.First();
+                        }
+                    }
+                    else
+                    {
+                        SelectedSearchTextResult = si.First();
+                    }
                 }
                 SearchTextItemsResult = si;
+            }
+            else
+            {
+                SelectedSearchTextResult = null;
             }
         }
         #endregion Functions

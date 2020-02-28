@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PoeTradeDesktop.Schemes.PreSearching;
 using PoeTradeDesktop.Util;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,12 @@ namespace PoeTradeDesktop.Schemes.Searching
         [JsonProperty("result")]
         public List<SearchResultItem> Items { get; set; }
 
-        public async Task Load(Search search)
+        public async Task Load(PreSearch preSearch)
         {
             Items = new List<SearchResultItem>();
 
             if (PreSearchResult == null)
-                PreSearchResult = await PreSearchResult.Load(search);
+                PreSearchResult = await PreSearchResult.Load(preSearch);
 
             await LoadMore();
         }

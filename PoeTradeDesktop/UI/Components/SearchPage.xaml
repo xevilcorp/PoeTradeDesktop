@@ -28,7 +28,7 @@
     <DockPanel Margin="4">
 
         <Grid DockPanel.Dock="Top">
-            <TextBox Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="searchBox" Style="{StaticResource InfoTextBox}"  FontSize="15" Padding="7 6 32 6" Tag="Search Items..."  PreviewKeyDown="SearchBoxPreviewKeyDown" LostKeyboardFocus="SearchBoxLostFocus" GotKeyboardFocus="SearchBoxGotFocus" ></TextBox>
+            <TextBox Height="30" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="searchBox" Style="{StaticResource InfoTextBox}"  FontSize="15" Padding="7 6 32 6" Tag="Search Items..."  PreviewKeyDown="SearchBoxPreviewKeyDown" LostKeyboardFocus="SearchBoxLostFocus" GotKeyboardFocus="SearchBoxGotFocus" ></TextBox>
 
             <Button ToolTip="Clean filters" Margin="0" HorizontalAlignment="Right" Padding="0" BorderThickness="0"  Background="Transparent" DockPanel.Dock="Right" Style="{StaticResource cleanButtonWithBorder}">
                 <Image RenderOptions.BitmapScalingMode="Linear" Source="../Images/orb_of_scouring.png" Height="24" Margin="4 0" OpacityMask="Black">
@@ -144,72 +144,90 @@
         <TabControl DockPanel.Dock="Top" Margin="0,4,0,0" BorderThickness="0" Background="Transparent" SelectedIndex="9">
             <TabItem ToolTip="OKOK" Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
-                    <Image Width="{Binding ElementName=c1, Path=ActualWidth}" Cursor="Hand" x:Name="firstIcon"   >
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseUp">
-                                <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="1"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <Image.Style>
-                            <Style TargetType="{x:Type Image}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ItemTypeFilterEnabled, FallbackValue=False}" Value="False">
-                                        <Setter Property="Source" Value="../Images/filter_rarity_icon_bw.png"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding ItemTypeFilterEnabled}" Value="True">
-                                        <Setter Property="Source" Value="../Images/filter_rarity_icon.png"/>
-                                    </DataTrigger>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Opacity" Value="0.9"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Image.Style>
-                    </Image>
+                    <Grid Width="{Binding ElementName=c1, Path=ActualWidth}">
+                        <Image MaxWidth="48" HorizontalAlignment="Left" Cursor="Hand" x:Name="firstIcon">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="1"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ItemTypeFilterEnabled, FallbackValue=False}" Value="False">
+                                            <Setter Property="Source" Value="../Images/filter_rarity_icon_bw.png"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ItemTypeFilterEnabled}" Value="True">
+                                            <Setter Property="Source" Value="../Images/filter_rarity_icon.png"/>
+                                        </DataTrigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.9"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </Grid>
                 </TabItem.Header>
                 <Frame Content="{Binding ItemTypeFilterTabContent}" Margin="-1,2,-2,1"/>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
-                    <Image Source="../Images/filter_damage_icon_bw.png" Width="{Binding ElementName=c2, Path=ActualWidth}" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    <Grid Width="{Binding ElementName=c2, Path=ActualWidth}">
+                        <Image HorizontalAlignment="Center" Source="../Images/filter_damage_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    </Grid>
                 </TabItem.Header>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
-                    <Image Source="../Images/filter_defense_icon_bw.png" Width="{Binding ElementName=c3, Path=ActualWidth}"  Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    <Grid Width="{Binding ElementName=c3, Path=ActualWidth}">
+                        <Image HorizontalAlignment="Center" Source="../Images/filter_defense_icon_bw.png"  Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    </Grid>
                 </TabItem.Header>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
-                    <Image Source="../Images/filter_links_icon_bw.png" Width="{Binding ElementName=c4, Path=ActualWidth}" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    <Grid Width="{Binding ElementName=c4, Path=ActualWidth}">
+                        <Image HorizontalAlignment="Center"  Source="../Images/filter_links_icon_bw.png"   Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    </Grid>
                 </TabItem.Header>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
-                    <Image Source="../Images/filter_attributes_icon_bw.png" Width="{Binding ElementName=c5, Path=ActualWidth}" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    <Grid Width="{Binding ElementName=c5, Path=ActualWidth}">
+                        <Image HorizontalAlignment="Center"  Source="../Images/filter_attributes_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    </Grid>
                 </TabItem.Header>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
-                    <Image Source="../Images/filter_map_icon_bw.png" Width="{Binding ElementName=c6, Path=ActualWidth}" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    <Grid Width="{Binding ElementName=c6, Path=ActualWidth}">
+                        <Image HorizontalAlignment="Center"  Source="../Images/filter_map_icon_bw.png"  Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    </Grid>
                 </TabItem.Header>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
-                    <Image Source="../Images/filter_misc_icon_bw.png" Width="{Binding ElementName=c7, Path=ActualWidth}" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    <Grid Width="{Binding ElementName=c7, Path=ActualWidth}">
+                        <Image HorizontalAlignment="Center"  Source="../Images/filter_misc_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    </Grid>
                 </TabItem.Header>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
-                    <Image Source="../Images/filter_stats_icon_bw.png" Width="{Binding ElementName=c8, Path=ActualWidth}" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    <Grid Width="{Binding ElementName=c8, Path=ActualWidth}">
+                        <Image HorizontalAlignment="Center"  Source="../Images/filter_stats_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    </Grid>
                 </TabItem.Header>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}" >
                 <TabItem.Header>
-                    <Image Source="../Images/filter_settings_icon_bw.png" Width="{Binding ElementName=c9, Path=ActualWidth}" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    <Grid Width="{Binding ElementName=c9, Path=ActualWidth}">
+                        <Image HorizontalAlignment="Right"  Source="../Images/filter_settings_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                    </Grid>
                 </TabItem.Header>
             </TabItem>
-            <TabItem IsSelected="{Binding IsFilterContentHidden, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=True}" Style="{StaticResource filterTabItem}" Header="" Margin="15 0 0 0 ">
+            <TabItem Visibility="Hidden" IsSelected="{Binding IsFilterContentHidden, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=True}" Style="{StaticResource filterTabItem}" Header="" Margin="15 0 0 0 ">
             </TabItem>
         </TabControl>
 
@@ -224,7 +242,14 @@
         </Rectangle>
 
         <Border BorderThickness="1" BorderBrush="#4988623B" CornerRadius="3" DockPanel.Dock="Bottom" Margin="0 3 0 0" Padding="2" Background="#36000000">
-            <Button DockPanel.Dock="Bottom" Style="{StaticResource mainButton}" Margin="250 0 0 0" Command="{Binding SearchCMD}" Content="SEARCH" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="2" Style="{StaticResource mainButton}" Command="{Binding SearchCMD}" Content="SEARCH" />
+            </Grid>
         </Border>
 
         <Grid>
@@ -243,8 +268,12 @@
                 </ListView.Resources>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <DockPanel>
-                            <Grid DockPanel.Dock="Left" Margin="-5 0 -5 0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="94" Width="1*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Margin="-5 0 -5 0">
                                 <ic:ImageBox CacheSource="{Binding Item.Icon}" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="NearestNeighbor"  Stretch="None" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
                                     <Image.RenderTransform>
                                         <TransformGroup>
@@ -254,7 +283,7 @@
                                 </ic:ImageBox>
                                 <li:Sockets Source="{Binding Item.Sockets}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Grid>
-                            <StackPanel DockPanel.Dock="Right">
+                            <StackPanel Grid.Column="1">
                                 <li:TitleFrame ItemName="{Binding Item.Name}" Influences="{Binding Item.Influences}" ItemFrameType="{Binding Item.FrameType}" ItemTypeLine="{Binding Item.TypeLine}" />
                                 <Border Background="#ff000000" Padding="3">
                                     <Grid>
@@ -267,7 +296,7 @@
                                     </Grid>
                                 </Border>
                             </StackPanel>
-                        </DockPanel>
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

@@ -1,4 +1,4 @@
-﻿namespace PoeTradeDesktop.Schemes
+﻿namespace PoeTradeDesktop.Schemes.PreSearching._PreSearch
 {
     public class Sort
     {

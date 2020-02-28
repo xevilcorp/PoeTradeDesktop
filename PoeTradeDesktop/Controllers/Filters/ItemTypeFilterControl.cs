@@ -59,6 +59,23 @@ namespace PoeTradeDesktop.Controllers.Filters
             Rarities = await ItemRarity.LoadAsync();
         }
 
+        public dynamic GetFilter()
+        {
+            if(FilterEnabled)
+            {
+                return new
+                {
+                    filters = new
+                    {
+                        category = SelectedCategory.Id,
+                        rarity = SelectedRarity.Id
+                    }
+                };
+            }
+
+            return null;
+        }
+
         public void HideContent(object o)
         {
             Parent.IsFilterContentHidden = true;

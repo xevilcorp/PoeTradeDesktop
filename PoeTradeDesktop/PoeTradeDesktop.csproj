@@ -76,7 +76,6 @@
     <Compile Include="Schemes\Enums\PropertyType.cs" />
     <Compile Include="Schemes\Enums\ValueStyle.cs" />
     <Compile Include="Schemes\Filtering\ItemRarity.cs" />
-    <Compile Include="Schemes\Filtering\Query.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\Influences.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Crafted.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Enchant.cs" />
@@ -97,8 +96,7 @@
     <Compile Include="Schemes\Searching\_SearchResultItem\_Listing\Account.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\Item.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Listing\Price.cs" />
-    <Compile Include="Schemes\Filtering\Sort.cs" />
-    <Compile Include="Schemes\Filtering\Status.cs" />
+    <Compile Include="Schemes\PreSearching\_PreSearch\Sort.cs" />
     <Compile Include="UI\Components\SearchResultItem\ModsControl.xaml.cs">
       <DependentUpon>ModsControl.xaml</DependentUpon>
     </Compile>
@@ -143,7 +141,7 @@
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
     <Compile Include="Schemes\Filtering\ItemCategory.cs" />
-    <Compile Include="Schemes\Filtering\Search.cs" />
+    <Compile Include="Schemes\PreSearching\PreSearch.cs" />
     <Compile Include="Schemes\Filtering\SearchItem.cs" />
     <Compile Include="Util\Api.cs" />
     <Compile Include="App.xaml.cs">

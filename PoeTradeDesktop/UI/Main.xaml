@@ -12,6 +12,7 @@
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
         Width="450"
+        MaxWidth="550"
         RenderOptions.BitmapScalingMode="NearestNeighbor"
         MouseDown="Window_MouseDown"
         Title="MainWindow" Height="750" >

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PoeTradeDesktop.UI.Components.SearchResultItem"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Margin="0 0 0 3">
     <UserControl.Resources>
         <ControlTemplate TargetType="ToolTip" x:Key="modToolTip">
             <Border Background="#121212" MaxWidth="360" Padding="8" BorderThickness="1" BorderBrush="#444444">
@@ -14,9 +14,12 @@
         </ControlTemplate>
     </UserControl.Resources>
     <StackPanel x:Name="panel">
+        <Grid Margin="0 0 25 0">
+            <Grid x:Name="widthGrid"/>
+        </Grid>
         <Image x:Name="separatorOne" HorizontalAlignment="Center" Source="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=SeparatorType, Converter={StaticResource FrameTypeToSeparator}}"/>
         <!--Enchant Mods-->
-        <ListView x:Name="enchantList" Style="{StaticResource ListViewWithNoScroll}" Background="Transparent" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=EnchantMods}"  BorderThickness="0">
+        <ListView x:Name="enchantList" Width="{Binding ElementName=widthGrid, Path=ActualWidth}" Style="{StaticResource ListViewWithNoScroll}" Background="Transparent" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=EnchantMods}"  BorderThickness="0">
             <ListView.Resources>
                 <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
                     <Setter Property="Background" Value="Transparent"/>
@@ -40,7 +43,7 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Grid HorizontalAlignment="Center" MaxWidth="250">
+                        <Grid HorizontalAlignment="Center">
                             <TextBlock ToolTipService.HasDropShadow="True" ToolTipService.Placement="Top" ToolTipService.HorizontalOffset="-40" ToolTipService.VerticalOffset="-15" ToolTipService.ShowDuration="10000" ToolTipService.InitialShowDelay="0" Foreground="#B4B4FF" TextTrimming="CharacterEllipsis" Text="{Binding}" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
                                 <TextBlock.ToolTip>
                                     <ToolTip Template="{StaticResource modToolTip}" Tag="Enchant" Opened="ToolTipOpened">
@@ -59,7 +62,7 @@
         </ListView>
         <Image x:Name="separatorTwo" HorizontalAlignment="Center" Source="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=SeparatorType, Converter={StaticResource FrameTypeToSeparator}}"/>
         <!--Implicit Mods-->
-        <ListView x:Name="implicitList" Style="{StaticResource ListViewWithNoScroll}" Background="Transparent" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ImplicitMods}"  BorderThickness="0">
+        <ListView x:Name="implicitList"  Style="{StaticResource ListViewWithNoScroll}" Background="Transparent" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ImplicitMods}"  BorderThickness="0">
             <ListView.Resources>
                 <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
                     <Setter Property="Background" Value="Transparent"/>
@@ -83,8 +86,8 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Grid HorizontalAlignment="Center" MaxWidth="250">
-                            <TextBlock ToolTipService.HasDropShadow="True" ToolTipService.Placement="Top" ToolTipService.HorizontalOffset="-40" ToolTipService.VerticalOffset="-15" ToolTipService.ShowDuration="10000" ToolTipService.InitialShowDelay="0" Foreground="#8888FF" TextTrimming="CharacterEllipsis" Text="{Binding}" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
+                        <Grid HorizontalAlignment="Center">
+                            <TextBlock Width="{Binding ElementName=widthGrid, Path=ActualWidth}" ToolTipService.HasDropShadow="True" ToolTipService.Placement="Top" ToolTipService.HorizontalOffset="-40" ToolTipService.VerticalOffset="-15" ToolTipService.ShowDuration="10000" ToolTipService.InitialShowDelay="0" Foreground="#8888FF" TextTrimming="CharacterEllipsis" Text="{Binding}" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
                                 <TextBlock.ToolTip>
                                     <ToolTip Template="{StaticResource modToolTip}" Tag="Implicit" Opened="ToolTipOpened">
                                         <StackPanel>
@@ -102,7 +105,7 @@
         </ListView>
         <Image x:Name="separatorThree" HorizontalAlignment="Center" Source="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=SeparatorType, Converter={StaticResource FrameTypeToSeparator}}"/>
         <!--Explicit Mods-->
-        <ListView x:Name="explicitList" Style="{StaticResource ListViewWithNoScroll}" Background="Transparent" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ExplicitMods}"  BorderThickness="0">
+        <ListView x:Name="explicitList" ScrollViewer.PanningDeceleration="1000" ScrollViewer.PanningMode="VerticalOnly" Style="{StaticResource ListViewWithNoScroll}" Background="Transparent" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ExplicitMods}"  BorderThickness="0">
             <ListView.Resources>
                 <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
                     <Setter Property="Background" Value="Transparent"/>
@@ -126,8 +129,8 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Grid HorizontalAlignment="Center" MaxWidth="250">
-                            <TextBlock ToolTipService.HasDropShadow="True" ToolTipService.Placement="Top" ToolTipService.HorizontalOffset="-40" ToolTipService.VerticalOffset="-15" ToolTipService.ShowDuration="10000" ToolTipService.InitialShowDelay="0" Foreground="#8888FF" TextTrimming="CharacterEllipsis" Text="{Binding}" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
+                        <Grid Margin="0 0 0 -2" >
+                            <TextBlock Text="{Binding}" Width="{Binding ElementName=widthGrid, Path=ActualWidth}" ToolTipService.HasDropShadow="True" ToolTipService.Placement="Top" ToolTipService.HorizontalOffset="-40" ToolTipService.VerticalOffset="-15" ToolTipService.ShowDuration="10000" ToolTipService.InitialShowDelay="0" Foreground="#8888FF" TextTrimming="CharacterEllipsis" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
                                 <TextBlock.ToolTip>
                                     <ToolTip Template="{StaticResource modToolTip}" Tag="Explicit" Opened="ToolTipOpened">
                                         <StackPanel>
@@ -168,8 +171,8 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Grid HorizontalAlignment="Center" MaxWidth="250">
-                            <TextBlock ToolTipService.HasDropShadow="True" ToolTipService.Placement="Top" ToolTipService.HorizontalOffset="-40" ToolTipService.VerticalOffset="-15" ToolTipService.ShowDuration="10000" ToolTipService.InitialShowDelay="0" Foreground="#B4B4FF" TextTrimming="CharacterEllipsis" Text="{Binding}" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
+                        <Grid HorizontalAlignment="Center">
+                            <TextBlock Width="{Binding ElementName=widthGrid, Path=ActualWidth}" ToolTipService.HasDropShadow="True" ToolTipService.Placement="Top" ToolTipService.HorizontalOffset="-40" ToolTipService.VerticalOffset="-15" ToolTipService.ShowDuration="10000" ToolTipService.InitialShowDelay="0" Foreground="#B4B4FF" TextTrimming="CharacterEllipsis" Text="{Binding}" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
                                 <TextBlock.ToolTip>
                                     <ToolTip Template="{StaticResource modToolTip}" Tag="Crafted" Opened="ToolTipOpened">
                                         <StackPanel>

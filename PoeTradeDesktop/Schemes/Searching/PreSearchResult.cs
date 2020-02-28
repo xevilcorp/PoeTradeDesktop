@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PoeTradeDesktop.Schemes.PreSearching;
 using PoeTradeDesktop.Util;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace PoeTradeDesktop.Schemes.Searching
         [JsonProperty("result")]
         public List<string> ItemIds;
 
-        public static async Task<PreSearchResult> Load(Search search)
+        public static async Task<PreSearchResult> Load(PreSearch search)
         {
             string url = $"https://www.pathofexile.com/api/trade/search/" + search.League.LeagueId;
 

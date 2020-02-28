@@ -30,7 +30,6 @@
                                         </Rectangle>
                                         <Image Source="../../Images/frame_0_right.png" Grid.Column="2"/>
                                         <Image x:Name="InfluenceTwo" VerticalAlignment="Center" HorizontalAlignment="left" Grid.Column="2"/>
-
                                     </Grid>
                                     <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ItemTypeLine}" TextAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource SmallCaps}" Margin="0 1 0 0" Foreground="#FFC8C8C8" FontSize="14"/>
                                 </Grid>
@@ -59,7 +58,7 @@
                                         </Rectangle>
                                         <Image Source="../../Images/frame_1_right.png" Grid.Column="2"/>
                                     </Grid>
-                                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ItemTypeLine}" TextAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource SmallCaps}" Margin="0 1 0 0" Foreground="#FF8888FF" FontSize="14"/>
+                                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ItemTypeLine}" TextAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource SmallCaps}" Margin="0 1 0 0" Foreground="#FF8888FF" FontSize="12"/>
                                 </Grid>
                             </Setter.Value>
                         </Setter>

@@ -26,6 +26,7 @@ namespace PoeTradeDesktop
             };
 
             string json = JsonConvert.SerializeObject(o, Formatting.None, serializer);
+
             
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Proxy = null;

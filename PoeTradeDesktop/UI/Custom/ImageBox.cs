@@ -23,7 +23,15 @@ namespace PoeTradeDesktop.UI.Custom
         private void ImageBoxLoaded(object sender, RoutedEventArgs e)
         {
             string url = CacheSource;
+           
             string imageFileName = url.Substring(url.IndexOf("v=") + 2);
+
+            string test = url.Substring(23, 3);
+            if (test.IndexOf("gen") != -1)
+            {
+                imageFileName = url.Replace("/", "").Replace(".", "").Replace(":", "") ;
+            }
+
             string path = Path.Combine(Environment.CurrentDirectory, $@"ImageCache\{imageFileName}.png");
 
             if (!File.Exists(path))

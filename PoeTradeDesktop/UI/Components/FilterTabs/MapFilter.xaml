@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:g="clr-namespace:PoeTradeDesktop.UI.Components.Generic"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="400">
+             mc:Ignorable="d"  d:DesignWidth="400">
     <StackPanel>
         <DockPanel Margin="0 0 0 3">
             <DockPanel.Background>
@@ -56,7 +55,7 @@
                 </ToggleButton.Style>
             </ToggleButton>
             <Button Command="{Binding HideContentCMD}"  Content="▲" FontSize="12"  Padding="10 0 10 0" FontFamily="Up"  DockPanel.Dock="Right"  Background="#FF32291B" Foreground="#FFC1B199" Style="{StaticResource cleanButtonWithBorder}"/>
-            <Label Content="ARMOUR FILTERS"  FontFamily="{StaticResource FontinBold}" Foreground="#FFE0CCBB" FontSize="12" Padding="4 7 0 5"  />
+            <Label Content="MAP FILTERS"  FontFamily="{StaticResource FontinBold}" Foreground="#FFE0CCBB" FontSize="12" Padding="4 7 0 5"  />
         </DockPanel>
 
         <Grid>
@@ -82,21 +81,21 @@
             </Grid.RowDefinitions>
 
             <Label Style="{StaticResource filterLabel}" FontSize="14" Content=" Map Tier" ToolTip="Map Tier" Margin="0 0 3 0"/>
-            <g:NumberBox Number="{Binding ArMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MIN" Grid.Column="1" Margin="0 0 1 0"/>
-            <g:NumberBox Number="{Binding ArMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MAX" Grid.Column="2" Margin="1 0 0 0"/>
+            <g:NumberBox Number="{Binding MapTierMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MIN" Grid.Column="1" Margin="0 0 1 0"/>
+            <g:NumberBox Number="{Binding MapTierMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MAX" Grid.Column="2" Margin="1 0 0 0"/>
             <Label Style="{StaticResource filterLabel}" FontSize="14" Grid.Column="4" ToolTip="Map Packsize" Content=" Map Packsize" Margin="0 0 3 0"/>
-            <g:NumberBox Number="{Binding EvMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MIN" Grid.Column="5" Margin="0 0 1 0"/>
-            <g:NumberBox Number="{Binding EvMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MAX" Grid.Column="6" Margin="1 0 0 0"/>
+            <g:NumberBox Number="{Binding MapPacksizeMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MIN" Grid.Column="5" Margin="0 0 1 0"/>
+            <g:NumberBox Number="{Binding MapPacksizeMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MAX" Grid.Column="6" Margin="1 0 0 0"/>
 
             <Label Style="{StaticResource filterLabel}" FontSize="14" Grid.Row="2" Content=" Map IIQ" ToolTip="Map increased item quantity" Margin="0 0 3 0"/>
-            <g:NumberBox Number="{Binding EsMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MIN" Grid.Row="2" Grid.Column="1" Margin="0 0 1 0"/>
-            <g:NumberBox Number="{Binding EsMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MAX" Grid.Row="2" Grid.Column="2" Margin="1 0 0 0"/>
+            <g:NumberBox Number="{Binding MapIIQMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MIN" Grid.Row="2" Grid.Column="1" Margin="0 0 1 0"/>
+            <g:NumberBox Number="{Binding MapIIQMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MAX" Grid.Row="2" Grid.Column="2" Margin="1 0 0 0"/>
             <Label Style="{StaticResource filterLabel}" FontSize="14" Grid.Row="2" Grid.Column="4" Content=" Map IIR" ToolTip="Map increased item rarity" Margin="0 0 3 0"/>
-            <g:NumberBox Number="{Binding BlockMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MIN" Grid.Row="2" Grid.Column="5" Margin="0 0 1 0"/>
-            <g:NumberBox Number="{Binding BlockMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MAX" Grid.Row="2" Grid.Column="6" Margin="1 0 0 0"/>
+            <g:NumberBox Number="{Binding MapIIRMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MIN" Grid.Row="2" Grid.Column="5" Margin="0 0 1 0"/>
+            <g:NumberBox Number="{Binding MapIIRMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MAX" Grid.Row="2" Grid.Column="6" Margin="1 0 0 0"/>
 
             <Label Style="{StaticResource filterLabel}" FontSize="14" Grid.Row="4" Content=" Shaped Map" ToolTip="Shaped Map" Margin="0 0 3 0"/>
-            <ComboBox Grid.Row="4" Grid.ColumnSpan="2" SelectedIndex="0" Grid.Column="1" IsEditable="True">
+            <ComboBox Grid.Row="4" Grid.ColumnSpan="2" SelectedIndex="{Binding MapShapedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" IsEditable="True">
                 <ComboBoxItem>Any</ComboBoxItem>
                 <ComboBoxItem>Yes</ComboBoxItem>
                 <ComboBoxItem>No</ComboBoxItem>
@@ -104,25 +103,21 @@
             
             <Label Style="{StaticResource filterLabel}" FontSize="14" Grid.Row="4" Grid.Column="4" Content=" Elder Map" ToolTip="Elder Map" Margin="0 0 3 0"/>
             <g:NumberBox Number="{Binding BlockMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MIN" Grid.Row="4" Grid.Column="5" Margin="0 0 1 0"/>
-            <ComboBox Grid.Row="4" Grid.ColumnSpan="2" SelectedIndex="0" Grid.Column="5" IsEditable="True">
+            <ComboBox Grid.Row="4" Grid.ColumnSpan="2" SelectedIndex="{Binding MapElderIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="5" IsEditable="True">
                 <ComboBoxItem>Any</ComboBoxItem>
                 <ComboBoxItem>Yes</ComboBoxItem>
                 <ComboBoxItem>No</ComboBoxItem>
             </ComboBox>
 
             <Label Style="{StaticResource filterLabel}" FontSize="14" Grid.Row="6" Content=" Blighted Map" ToolTip="Blighted Map" Margin="0 0 3 0"/>
-            <ComboBox Grid.Row="6" Grid.ColumnSpan="2" SelectedIndex="0" Grid.Column="1" IsEditable="True">
+            <ComboBox Grid.Row="6" Grid.ColumnSpan="2" SelectedIndex="{Binding MapBlightedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" IsEditable="True">
                 <ComboBoxItem>Any</ComboBoxItem>
                 <ComboBoxItem>Yes</ComboBoxItem>
                 <ComboBoxItem>No</ComboBoxItem>
             </ComboBox>
 
             <Label Style="{StaticResource filterLabel}" FontSize="14" Grid.Row="8" Grid.ColumnSpan="3" Content=" Map Series" ToolTip="Map Series" />
-            <ComboBox Grid.Row="8" Grid.ColumnSpan="3" SelectedIndex="0" Grid.Column="4" IsEditable="True">
-                <ComboBoxItem>Any</ComboBoxItem>
-                <ComboBoxItem>Yes</ComboBoxItem>
-                <ComboBoxItem>No</ComboBoxItem>
-            </ComboBox>
+            <ComboBox  SelectedIndex="0" SelectedItem="{Binding SelectedMapSerie, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding MapSeriesSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Text" Grid.Row="8" Grid.ColumnSpan="3" Grid.Column="4" IsEditable="True"/>
         </Grid>
     </StackPanel>
 </UserControl>

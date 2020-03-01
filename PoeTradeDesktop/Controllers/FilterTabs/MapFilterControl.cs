@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PoeTradeDesktop.Schemes.Filtering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -89,12 +90,29 @@ namespace PoeTradeDesktop.Controllers.FilterTabs
             get { return mapBlightedIndex; }
             set { mapBlightedIndex = value; RaisePropertyChanged("MapBlightedIndex"); }
         }
+
+        private List<MapSeries> mapSeriesSource;
+        public List<MapSeries> MapSeriesSource
+        {
+            get { return mapSeriesSource; }
+            set { mapSeriesSource = value; RaisePropertyChanged("MapSeriesSource"); }
+        }
+
+        private MapSeries selectedMapSerie;
+        public MapSeries SelectedMapSerie
+        {
+            get { return selectedMapSerie; }
+            set { selectedMapSerie = value; RaisePropertyChanged("SelectedMapSerie"); }
+        }
+
+
         #endregion Properties
 
         public MapFilterControl(object parent)
         {
             Parent = parent as SearchControl;
             HideContentCMD = new RelayCommand(HideContent);
+            MapSeriesSource = MapSeries.Load();
         }
 
         public void HideContent(object o)
@@ -111,7 +129,14 @@ namespace PoeTradeDesktop.Controllers.FilterTabs
                     disabled = false,
                     filters = new
                     {
-                        
+                        map_tier = new { min = ZeroIsNull(MapTierMin), max = ZeroIsNull(MapTierMax) },
+                        map_packsize = new { min = ZeroIsNull(MapPacksizeMin), max = ZeroIsNull(MapPacksizeMax) },
+                        map_iir= new { min = ZeroIsNull(MapIIQMin), max = ZeroIsNull(MapIIQMax) },
+                        map_iiq = new { min = ZeroIsNull(MapIIRMin), max = ZeroIsNull(MapIIRMax) },
+                        map_shaped = IndexToAnyYesNo(MapShapedIndex),
+                        map_elder = IndexToAnyYesNo(MapElderIndex),
+                        map_blighted = IndexToAnyYesNo(MapBlightedIndex),
+                        map_series = new { option = SelectedMapSerie.Id}
                     }
                 };
             }
@@ -119,7 +144,20 @@ namespace PoeTradeDesktop.Controllers.FilterTabs
             return null;
         }
 
+        private object IndexToAnyYesNo(int index)
+        {
+            if(index == 0) { return null; }
+            if(index == 1) { return new { option = true}; }
+            if(index == 2) { return new { option = false }; }
+            return null;
+        }
+
         private float? ZeroIsNull(float? n)
+        {
+            return n != 0 ? n : null;
+        }
+
+        private int? ZeroIsNull(int? n)
         {
             return n != 0 ? n : null;
         }

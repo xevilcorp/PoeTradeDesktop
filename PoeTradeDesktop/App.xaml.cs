@@ -31,6 +31,10 @@ namespace PoeTradeDesktop
             url = "https://raw.githubusercontent.com/xEvilCorp/PoeTradeDesktop/master/PoeTradeDesktop/Data/item-rarity.json";
             path = Path.Combine(folderPath, "item-rarity.json");
             client.DownloadFile(url, path);
+
+            url = "https://raw.githubusercontent.com/xEvilCorp/PoeTradeDesktop/master/PoeTradeDesktop/Data/map-series.json";
+            path = Path.Combine(folderPath, "map-series.json");
+            client.DownloadFile(url, path);
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 
-namespace PoeTradeDesktop.Controllers.Filters
+namespace PoeTradeDesktop.Controllers.FilterTabs
 {
     class ItemTypeFilterControl : BaseControl
     {

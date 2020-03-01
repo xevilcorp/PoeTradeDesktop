@@ -1,9 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:PoeTradeDesktop.Style">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="filterLabel" TargetType="Label">
         <Setter Property="BorderThickness" Value="1 0 0 0"/>
         <Setter Property="Background" Value="#0E0F10"/>
+        <Setter Property="ToolTipService.InitialShowDelay" Value="500"/>
+        <Setter Property="ToolTipService.Placement" Value="Top"/>
         <Setter Property="Foreground" Value="#fff8e1"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>

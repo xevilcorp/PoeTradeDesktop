@@ -1,17 +1,14 @@
 ﻿using Newtonsoft.Json;
-using PoeTradeDesktop.Schemes.PreSearching;
-using PoeTradeDesktop.Util;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using PoeTradeDesktop.Schemes.Filtering;
 
 namespace PoeTradeDesktop.Schemes.Searching
 {
     public class SearchResult
     {
-        public int PageSize = 9;
+        public int PageSize = 9; 
         public int TotalLoaded = 0;
         public int TotalAvailableToLoad = 1;
         public PreSearchResult PreSearchResult;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PoeTradeDesktop.Models
+namespace PoeTradeDesktop.Schemes.Filtering
 {
     public class SearchItem
     {

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uic="clr-namespace:PoeTradeDesktop.UI.Components"
-        xmlns:uiwp="clr-namespace:PoeTradeDesktop.Interface"
+        xmlns:uiwp="clr-namespace:PoeTradeDesktop.UI.Components.WindowParts"
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen" 

@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PoeTradeDesktop
 {
@@ -22,11 +23,13 @@ namespace PoeTradeDesktop
             JsonSerializerSettings serializer = new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore,
+              
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
             };
 
             string json = JsonConvert.SerializeObject(o, Formatting.None, serializer);
 
+            MessageBox.Show(json);
             
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Proxy = null;

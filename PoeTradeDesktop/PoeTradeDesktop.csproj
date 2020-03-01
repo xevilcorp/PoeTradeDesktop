@@ -69,13 +69,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controllers\BaseControl.cs" />
-    <Compile Include="Controllers\Filters\ItemTypeFilterControl.cs" />
+    <Compile Include="Controllers\FilterTabs\ArmourFilterControl.cs" />
+    <Compile Include="Controllers\FilterTabs\ItemTypeFilterControl.cs" />
+    <Compile Include="Controllers\FilterTabs\MapFilterControl.cs" />
+    <Compile Include="Controllers\FilterTabs\RequirementsFilterControl.cs" />
+    <Compile Include="Controllers\FilterTabs\SocketFilterControl.cs" />
+    <Compile Include="Controllers\FilterTabs\WeaponFilterControl.cs" />
     <Compile Include="Controllers\SearchControl.cs" />
     <Compile Include="Schemes\Enums\DisplayMode.cs" />
     <Compile Include="Schemes\Enums\FrameType.cs" />
     <Compile Include="Schemes\Enums\PropertyType.cs" />
     <Compile Include="Schemes\Enums\ValueStyle.cs" />
     <Compile Include="Schemes\Filtering\ItemRarity.cs" />
+    <Compile Include="Schemes\Filtering\PropertyMinMax.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\Influences.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Crafted.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Enchant.cs" />
@@ -96,7 +102,25 @@
     <Compile Include="Schemes\Searching\_SearchResultItem\_Listing\Account.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\Item.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Listing\Price.cs" />
-    <Compile Include="Schemes\PreSearching\_PreSearch\Sort.cs" />
+    <Compile Include="Schemes\Filtering\Sort.cs" />
+    <Compile Include="UI\Components\FilterTabs\ArmourFilter.xaml.cs">
+      <DependentUpon>ArmourFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\FilterTabs\MapFilter.xaml.cs">
+      <DependentUpon>MapFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\FilterTabs\RequirementsFilter.xaml.cs">
+      <DependentUpon>RequirementsFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\FilterTabs\SocketFilter.xaml.cs">
+      <DependentUpon>SocketFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\FilterTabs\WeaponFilter.xaml.cs">
+      <DependentUpon>WeaponFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\Generic\NumberBox.xaml.cs">
+      <DependentUpon>NumberBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Components\SearchResultItem\ModsControl.xaml.cs">
       <DependentUpon>ModsControl.xaml</DependentUpon>
     </Compile>
@@ -125,8 +149,8 @@
     <Compile Include="UI\Components\WindowParts\ContentBackground.xaml.cs">
       <DependentUpon>ContentBackground.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Components\Filters\FilterTabs\ItemType.xaml.cs">
-      <DependentUpon>ItemType.xaml</DependentUpon>
+    <Compile Include="UI\Components\FilterTabs\ItemTypeFilter.xaml.cs">
+      <DependentUpon>ItemTypeFilter.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Components\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
@@ -137,11 +161,12 @@
     <Compile Include="UI\Components\WindowParts\WindowTopBar.xaml.cs">
       <DependentUpon>WindowTopBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Custom\UserControlNotify.cs" />
     <Compile Include="UI\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
     <Compile Include="Schemes\Filtering\ItemCategory.cs" />
-    <Compile Include="Schemes\PreSearching\PreSearch.cs" />
+    <Compile Include="Schemes\Filtering\PreSearch.cs" />
     <Compile Include="Schemes\Filtering\SearchItem.cs" />
     <Compile Include="Util\Api.cs" />
     <Compile Include="App.xaml.cs">
@@ -149,6 +174,30 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Util\Benchmark.cs" />
+    <Page Include="UI\Components\FilterTabs\ArmourFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\FilterTabs\MapFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\FilterTabs\RequirementsFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\FilterTabs\SocketFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\FilterTabs\WeaponFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\Generic\NumberBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Components\SearchResultItem\ModsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -177,7 +226,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Components\Filters\FilterTabs\ItemType.xaml">
+    <Page Include="UI\Components\FilterTabs\ItemTypeFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

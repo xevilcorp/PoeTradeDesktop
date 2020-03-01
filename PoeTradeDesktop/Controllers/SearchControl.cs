@@ -1,20 +1,22 @@
-﻿using PoeTradeDesktop.Models;
-using PoeTradeDesktop.Schemes;
-using PoeTradeDesktop.Schemes.PreSearching;
-using PoeTradeDesktop.Schemes.PreSearching._PreSearch;
+﻿using PoeTradeDesktop.Schemes;
+using PoeTradeDesktop.Schemes.Filtering;
 using PoeTradeDesktop.Schemes.Searching;
+using PoeTradeDesktop.Controllers.FilterTabs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using PoeTradeDesktop.UI.Components.FilterTabs;
 
 namespace PoeTradeDesktop.Controllers
 {
     class SearchControl : BaseControl
     {
         #region Properties
+
+        #region filterTabs 
         private bool itemTypeFilterEnabled;
         public bool ItemTypeFilterEnabled
         {
@@ -28,6 +30,77 @@ namespace PoeTradeDesktop.Controllers
             get { return itemTypeFilterTabContent; }
             set { itemTypeFilterTabContent = value; RaisePropertyChanged("ItemTypeFilterTabContent"); }
         }
+
+        private bool weaponFilterEnabled;
+        public bool WeaponFilterEnabled
+        {
+            get { return weaponFilterEnabled; }
+            set { weaponFilterEnabled = value; RaisePropertyChanged("WeaponFilterEnabled"); }
+        }
+
+        private object weaponFilterTabContent;
+        public object WeaponFilterTabContent
+        {
+            get { return weaponFilterTabContent; }
+            set { weaponFilterTabContent = value; RaisePropertyChanged("WeaponFilterTabContent"); }
+        }
+
+        private bool armourFilterEnabled;
+        public bool ArmourFilterEnabled
+        {
+            get { return armourFilterEnabled; }
+            set { armourFilterEnabled = value; RaisePropertyChanged("ArmourFilterEnabled"); }
+        }
+
+        private object armourFilterTabContent;
+        public object ArmourFilterTabContent
+        {
+            get { return armourFilterTabContent; }
+            set { armourFilterTabContent = value; RaisePropertyChanged("ArmourFilterTabContent"); }
+        }
+
+        private bool socketFilterEnabled;
+        public bool SocketFilterEnabled
+        {
+            get { return socketFilterEnabled; }
+            set { socketFilterEnabled = value; RaisePropertyChanged("SocketFilterEnabled"); }
+        }
+
+        private object socketFilterTabContent;
+        public object SocketFilterTabContent
+        {
+            get { return socketFilterTabContent; }
+            set { socketFilterTabContent = value; RaisePropertyChanged("SocketFilterTabContent"); }
+        }
+
+        private bool requirementFilterEnabled;
+        public bool RequirementFilterEnabled
+        {
+            get { return requirementFilterEnabled; }
+            set { requirementFilterEnabled = value; RaisePropertyChanged("RequirementFilterEnabled"); }
+        }
+
+        private object requirementFilterTabContent;
+        public object RequirementFilterTabContent
+        {
+            get { return requirementFilterTabContent; }
+            set { requirementFilterTabContent = value; RaisePropertyChanged("RequirementFilterTabContent"); }
+        }
+
+        private bool mapFilterEnabled;
+        public bool MapFilterEnabled
+        {
+            get { return mapFilterEnabled; }
+            set { mapFilterEnabled = value; RaisePropertyChanged("MapFilterEnabled"); }
+        }
+
+        private object mapFilterTabContent;
+        public object MapFilterTabContent
+        {
+            get { return mapFilterTabContent; }
+            set { mapFilterTabContent = value; RaisePropertyChanged("MapFilterTabContent"); }
+        }
+        #endregion filterTabs 
 
         private List<League> leagues;
         public List<League> Leagues
@@ -75,10 +148,6 @@ namespace PoeTradeDesktop.Controllers
             get { return selectedSearchTextResult; }
             set { 
                 selectedSearchTextResult = value; 
-                if(selectedSearchTextResult.Name.IndexOf("Geofri") != -1)
-                {
-                    int x = 1;
-                }
                 RaisePropertyChanged("SelectedSearchTextResult"); }
         }
 
@@ -151,8 +220,28 @@ namespace PoeTradeDesktop.Controllers
             switch (Convert.ToInt32(o))
             {
                 case 1:
-                    if (ItemTypeFilterTabContent == null) ItemTypeFilterTabContent = new Interface.Filters.ItemType(this);
-                    ((ItemTypeFilterTabContent as Interface.Filters.ItemType).DataContext as Filters.ItemTypeFilterControl).FilterEnabled = true;
+                    if (ItemTypeFilterTabContent == null) ItemTypeFilterTabContent = new ItemTypeFilter(this);
+                    ((ItemTypeFilterTabContent as ItemTypeFilter).DataContext as ItemTypeFilterControl).FilterEnabled = true;
+                    break;
+                case 2:
+                    if (WeaponFilterTabContent == null) WeaponFilterTabContent = new WeaponFilter(this);
+                    ((WeaponFilterTabContent as WeaponFilter).DataContext as WeaponFilterControl).FilterEnabled = true;
+                    break;
+                case 3:
+                    if (ArmourFilterTabContent == null) ArmourFilterTabContent = new ArmourFilter(this);
+                    ((ArmourFilterTabContent as ArmourFilter).DataContext as ArmourFilterControl).FilterEnabled = true;
+                    break;
+                case 4:
+                    if (SocketFilterTabContent == null) SocketFilterTabContent = new SocketFilter(this);
+                    ((SocketFilterTabContent as SocketFilter).DataContext as SocketFilterControl).FilterEnabled = true;
+                    break;
+                case 5:
+                    if (RequirementFilterTabContent == null) RequirementFilterTabContent = new RequirementsFilter(this);
+                    ((RequirementFilterTabContent as RequirementsFilter).DataContext as RequirementsFilterControl).FilterEnabled = true;
+                    break;
+                case 6:
+                    if (MapFilterTabContent == null) MapFilterTabContent = new MapFilter(this);
+                    ((MapFilterTabContent as MapFilter).DataContext as MapFilterControl).FilterEnabled = true;
                     break;
             }
         }
@@ -161,7 +250,12 @@ namespace PoeTradeDesktop.Controllers
         {
             return new
             {
-                type_filters = ItemTypeFilterEnabled ? ((Filters.ItemTypeFilterControl)((Interface.Filters.ItemType)ItemTypeFilterTabContent).DataContext).GetFilter() : null
+                type_filters = ItemTypeFilterEnabled ? ((ItemTypeFilterControl)((ItemTypeFilter)ItemTypeFilterTabContent).DataContext).GetFilter() : null,
+                weapon_filters = WeaponFilterEnabled ? ((WeaponFilterControl)((WeaponFilter)WeaponFilterTabContent).DataContext).GetFilter() : null,
+                armour_filters = ArmourFilterEnabled ? ((ArmourFilterControl)((ArmourFilter)ArmourFilterTabContent).DataContext).GetFilter() : null,
+                socket_filters = SocketFilterEnabled ? ((SocketFilterControl)((SocketFilter)SocketFilterTabContent).DataContext).GetFilter() : null,
+                req_filters = RequirementFilterEnabled ? ((RequirementsFilterControl)((RequirementsFilter)RequirementFilterTabContent).DataContext).GetFilter() : null,
+                map_filters = MapFilterEnabled ? ((MapFilterControl)((MapFilter)MapFilterTabContent).DataContext).GetFilter() : null
             };
         }
 
@@ -193,7 +287,7 @@ namespace PoeTradeDesktop.Controllers
             sort.Price = "desc";
             PreSearch.Sort = sort;
 
-            SearchResult sr = new SearchResult();
+            SearchResult sr = new SearchResult(); 
             await sr.Load(PreSearch);
             SearchResult = sr;
             IsSearchResultLoading = false;

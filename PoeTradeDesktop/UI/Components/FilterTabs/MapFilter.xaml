@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="PoeTradeDesktop.UI.Components.FilterTabs.MapFilter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:g="clr-namespace:PoeTradeDesktop.UI.Components.Generic"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400">
+    <StackPanel>
+        <DockPanel Margin="0 0 0 3">
+            <DockPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#00382D1C" Offset="1"/>
+                    <GradientStop Color="#FF382D1C"/>
+                </LinearGradientBrush>
+            </DockPanel.Background>
+            <ToggleButton IsChecked="{Binding FilterEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="4 0 0 0">
+                <ToggleButton.Style>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                    <Label Name="lbl" Margin="0 1 0 0" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                            <Setter Property="Opacity" Value="0.9"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter TargetName="lbl" Property="Content">
+                                                <Setter.Value>
+                                                    <Image Source="../../Images/checkbox_on.png"  Height="21" Margin="0,0,1,0" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="False">
+                                            <Setter TargetName="lbl" Property="Content">
+                                                <Setter.Value>
+                                                    <Image Source="../../Images/checkbox_off.png"  Height="21" Margin="0,0,1,0" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ToggleButton.Style>
+            </ToggleButton>
+            <Button Command="{Binding HideContentCMD}"  Content="▲" FontSize="12"  Padding="10 0 10 0" FontFamily="Up"  DockPanel.Dock="Right"  Background="#FF32291B" Foreground="#FFC1B199" Style="{StaticResource cleanButtonWithBorder}"/>
+            <Label Content="ARMOUR FILTERS"  FontFamily="{StaticResource FontinBold}" Foreground="#FFE0CCBB" FontSize="12" Padding="4 7 0 5"  />
+        </DockPanel>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Style="{StaticResource filterLabel}" FontSize="14" Content=" Map Tier" ToolTip="Map Tier" Margin="0 0 3 0"/>
+            <g:NumberBox Number="{Binding ArMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MIN" Grid.Column="1" Margin="0 0 1 0"/>
+            <g:NumberBox Number="{Binding ArMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MAX" Grid.Column="2" Margin="1 0 0 0"/>
+            <Label Style="{StaticResource filterLabel}" FontSize="14" Grid.Column="4" ToolTip="Map Packsize" Content=" Map Packsize" Margin="0 0 3 0"/>
+            <g:NumberBox Number="{Binding EvMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MIN" Grid.Column="5" Margin="0 0 1 0"/>
+            <g:NumberBox Number="{Binding EvMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MAX" Grid.Column="6" Margin="1 0 0 0"/>
+
+            <Label Style="{StaticResource filterLabel}" FontSize="14" Grid.Row="2" Content=" Map IIQ" ToolTip="Map increased item quantity" Margin="0 0 3 0"/>
+            <g:NumberBox Number="{Binding EsMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MIN" Grid.Row="2" Grid.Column="1" Margin="0 0 1 0"/>
+            <g:NumberBox Number="{Binding EsMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MAX" Grid.Row="2" Grid.Column="2" Margin="1 0 0 0"/>
+            <Label Style="{StaticResource filterLabel}" FontSize="14" Grid.Row="2" Grid.Column="4" Content=" Map IIR" ToolTip="Map increased item rarity" Margin="0 0 3 0"/>
+            <g:NumberBox Number="{Binding BlockMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MIN" Grid.Row="2" Grid.Column="5" Margin="0 0 1 0"/>
+            <g:NumberBox Number="{Binding BlockMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MAX" Grid.Row="2" Grid.Column="6" Margin="1 0 0 0"/>
+
+            <Label Style="{StaticResource filterLabel}" FontSize="14" Grid.Row="4" Content=" Shaped Map" ToolTip="Shaped Map" Margin="0 0 3 0"/>
+            <ComboBox Grid.Row="4" Grid.ColumnSpan="2" SelectedIndex="0" Grid.Column="1" IsEditable="True">
+                <ComboBoxItem>Any</ComboBoxItem>
+                <ComboBoxItem>Yes</ComboBoxItem>
+                <ComboBoxItem>No</ComboBoxItem>
+            </ComboBox>
+            
+            <Label Style="{StaticResource filterLabel}" FontSize="14" Grid.Row="4" Grid.Column="4" Content=" Elder Map" ToolTip="Elder Map" Margin="0 0 3 0"/>
+            <g:NumberBox Number="{Binding BlockMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Placeholder="MIN" Grid.Row="4" Grid.Column="5" Margin="0 0 1 0"/>
+            <ComboBox Grid.Row="4" Grid.ColumnSpan="2" SelectedIndex="0" Grid.Column="5" IsEditable="True">
+                <ComboBoxItem>Any</ComboBoxItem>
+                <ComboBoxItem>Yes</ComboBoxItem>
+                <ComboBoxItem>No</ComboBoxItem>
+            </ComboBox>
+
+            <Label Style="{StaticResource filterLabel}" FontSize="14" Grid.Row="6" Content=" Blighted Map" ToolTip="Blighted Map" Margin="0 0 3 0"/>
+            <ComboBox Grid.Row="6" Grid.ColumnSpan="2" SelectedIndex="0" Grid.Column="1" IsEditable="True">
+                <ComboBoxItem>Any</ComboBoxItem>
+                <ComboBoxItem>Yes</ComboBoxItem>
+                <ComboBoxItem>No</ComboBoxItem>
+            </ComboBox>
+
+            <Label Style="{StaticResource filterLabel}" FontSize="14" Grid.Row="8" Grid.ColumnSpan="3" Content=" Map Series" ToolTip="Map Series" />
+            <ComboBox Grid.Row="8" Grid.ColumnSpan="3" SelectedIndex="0" Grid.Column="4" IsEditable="True">
+                <ComboBoxItem>Any</ComboBoxItem>
+                <ComboBoxItem>Yes</ComboBoxItem>
+                <ComboBoxItem>No</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+    </StackPanel>
+</UserControl>

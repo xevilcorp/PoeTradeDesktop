@@ -1,4 +1,4 @@
-﻿using PoeTradeDesktop.Models;
+﻿using PoeTradeDesktop.Schemes.Filtering;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;

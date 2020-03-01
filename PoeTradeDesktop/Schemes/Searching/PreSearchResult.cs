@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using PoeTradeDesktop.Schemes.PreSearching;
+using PoeTradeDesktop.Schemes.Filtering;
 using PoeTradeDesktop.Util;
 using System.Collections.Generic;
 using System.Threading.Tasks;

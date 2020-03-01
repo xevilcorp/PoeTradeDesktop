@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using PoeTradeDesktop.Schemes.PreSearching._PreSearch;
 
-namespace PoeTradeDesktop.Schemes.PreSearching
+namespace PoeTradeDesktop.Schemes.Filtering
 {
     public class PreSearch
     {

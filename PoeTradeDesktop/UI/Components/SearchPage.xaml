@@ -174,56 +174,166 @@
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
                     <Grid Width="{Binding ElementName=c2, Path=ActualWidth}">
-                        <Image HorizontalAlignment="Center" Source="../Images/filter_damage_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                        <Image HorizontalAlignment="Center" Cursor="Hand" Height="{Binding ElementName=firstIcon, Path=ActualHeight}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="2"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding WeaponFilterEnabled, FallbackValue=False}" Value="False">
+                                            <Setter Property="Source" Value="../Images/filter_damage_icon_bw.png"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding WeaponFilterEnabled}" Value="True">
+                                            <Setter Property="Source" Value="../Images/filter_damage_icon.png"/>
+                                        </DataTrigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.9"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
                     </Grid>
                 </TabItem.Header>
+                <Frame Content="{Binding WeaponFilterTabContent}" Margin="-1,2,-2,1"/>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
                     <Grid Width="{Binding ElementName=c3, Path=ActualWidth}">
-                        <Image HorizontalAlignment="Center" Source="../Images/filter_defense_icon_bw.png"  Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                        <Image HorizontalAlignment="Center" Cursor="Hand" Height="{Binding ElementName=firstIcon, Path=ActualHeight}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="3"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ArmourFilterEnabled, FallbackValue=False}" Value="False">
+                                            <Setter Property="Source" Value="../Images/filter_defense_icon_bw.png"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ArmourFilterEnabled}" Value="True">
+                                            <Setter Property="Source" Value="../Images/filter_defense_icon.png"/>
+                                        </DataTrigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.9"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
                     </Grid>
                 </TabItem.Header>
+                <Frame Content="{Binding ArmourFilterTabContent}" Margin="-1,2,-2,1"/>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
                     <Grid Width="{Binding ElementName=c4, Path=ActualWidth}">
-                        <Image HorizontalAlignment="Center"  Source="../Images/filter_links_icon_bw.png"   Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                        <Image HorizontalAlignment="Center" Cursor="Hand" Height="{Binding ElementName=firstIcon, Path=ActualHeight}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="4"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SocketFilterEnabled, FallbackValue=False}" Value="False">
+                                            <Setter Property="Source" Value="../Images/filter_links_icon_bw.png"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SocketFilterEnabled}" Value="True">
+                                            <Setter Property="Source" Value="../Images/filter_links_icon.png"/>
+                                        </DataTrigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.9"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
                     </Grid>
                 </TabItem.Header>
+                <Frame Content="{Binding SocketFilterTabContent}" Margin="-1,2,-2,1"/>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
                     <Grid Width="{Binding ElementName=c5, Path=ActualWidth}">
-                        <Image HorizontalAlignment="Center"  Source="../Images/filter_attributes_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                        <Image HorizontalAlignment="Center" Cursor="Hand" Height="{Binding ElementName=firstIcon, Path=ActualHeight}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="5"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RequirementFilterEnabled, FallbackValue=False}" Value="False">
+                                            <Setter Property="Source" Value="../Images/filter_attributes_icon_bw.png"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding RequirementFilterEnabled}" Value="True">
+                                            <Setter Property="Source" Value="../Images/filter_attributes_icon.png"/>
+                                        </DataTrigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.9"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
                     </Grid>
                 </TabItem.Header>
+                <Frame Content="{Binding RequirementFilterTabContent}" Margin="-1,2,-2,1"/>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
                     <Grid Width="{Binding ElementName=c6, Path=ActualWidth}">
-                        <Image HorizontalAlignment="Center"  Source="../Images/filter_map_icon_bw.png"  Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                        <Image HorizontalAlignment="Center" Cursor="Hand" Height="{Binding ElementName=firstIcon, Path=ActualHeight}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="6"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding MapFilterEnabled, FallbackValue=False}" Value="False">
+                                            <Setter Property="Source" Value="../Images/filter_map_icon_bw.png"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding MapFilterEnabled}" Value="True">
+                                            <Setter Property="Source" Value="../Images/filter_map_icon.png"/>
+                                        </DataTrigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.9"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
                     </Grid>
                 </TabItem.Header>
+                <Frame Content="{Binding MapFilterTabContent}" Margin="-1,2,-2,1"/>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
                     <Grid Width="{Binding ElementName=c7, Path=ActualWidth}">
-                        <Image HorizontalAlignment="Center"  Source="../Images/filter_misc_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                        <Image HorizontalAlignment="Center" Cursor="Hand" Source="../Images/filter_misc_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
                     </Grid>
                 </TabItem.Header>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
                     <Grid Width="{Binding ElementName=c8, Path=ActualWidth}">
-                        <Image HorizontalAlignment="Center"  Source="../Images/filter_stats_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                        <Image HorizontalAlignment="Center" Cursor="Hand" Source="../Images/filter_stats_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
                     </Grid>
                 </TabItem.Header>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}" >
                 <TabItem.Header>
                     <Grid Width="{Binding ElementName=c9, Path=ActualWidth}">
-                        <Image HorizontalAlignment="Right"  Source="../Images/filter_settings_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                        <Image HorizontalAlignment="Right" Cursor="Hand" Source="../Images/filter_settings_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
                     </Grid>
                 </TabItem.Header>
             </TabItem>

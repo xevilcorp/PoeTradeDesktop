@@ -21,8 +21,6 @@
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
 
-
-
     <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
         <Grid>
             <Grid.ColumnDefinitions>

@@ -72,6 +72,7 @@
     <Compile Include="Controllers\FilterTabs\ArmourFilterControl.cs" />
     <Compile Include="Controllers\FilterTabs\ItemTypeFilterControl.cs" />
     <Compile Include="Controllers\FilterTabs\MapFilterControl.cs" />
+    <Compile Include="Controllers\FilterTabs\MiscellaneousFilterControl.cs" />
     <Compile Include="Controllers\FilterTabs\RequirementsFilterControl.cs" />
     <Compile Include="Controllers\FilterTabs\SocketFilterControl.cs" />
     <Compile Include="Controllers\FilterTabs\WeaponFilterControl.cs" />
@@ -109,6 +110,9 @@
     </Compile>
     <Compile Include="UI\Components\FilterTabs\MapFilter.xaml.cs">
       <DependentUpon>MapFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\FilterTabs\MiscellaneousFilter.xaml.cs">
+      <DependentUpon>MiscellaneousFilter.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Components\FilterTabs\RequirementsFilter.xaml.cs">
       <DependentUpon>RequirementsFilter.xaml</DependentUpon>
@@ -180,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Components\FilterTabs\MapFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\FilterTabs\MiscellaneousFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

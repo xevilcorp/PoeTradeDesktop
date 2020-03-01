@@ -319,9 +319,31 @@
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
                     <Grid Width="{Binding ElementName=c7, Path=ActualWidth}">
-                        <Image HorizontalAlignment="Center" Cursor="Hand" Source="../Images/filter_misc_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                        <Image HorizontalAlignment="Center" Cursor="Hand" Height="{Binding ElementName=firstIcon, Path=ActualHeight}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="7"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding MiscellaneousFilterEnabled, FallbackValue=False}" Value="False">
+                                            <Setter Property="Source" Value="../Images/filter_misc_icon_bw.png"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding MiscellaneousFilterEnabled}" Value="True">
+                                            <Setter Property="Source" Value="../Images/filter_misc_icon.png"/>
+                                        </DataTrigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.9"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
                     </Grid>
                 </TabItem.Header>
+                <Frame Content="{Binding MiscellaneousFilterTabContent}" Margin="-1,2,-2,1"/>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>

@@ -100,6 +100,20 @@ namespace PoeTradeDesktop.Controllers
             get { return mapFilterTabContent; }
             set { mapFilterTabContent = value; RaisePropertyChanged("MapFilterTabContent"); }
         }
+
+        private bool miscellaneousFilterEnabled;
+        public bool MiscellaneousFilterEnabled
+        {
+            get { return miscellaneousFilterEnabled; }
+            set { miscellaneousFilterEnabled = value; RaisePropertyChanged("MiscellaneousFilterEnabled"); }
+        }
+
+        private object miscellaneousFilterTabContent;
+        public object MiscellaneousFilterTabContent
+        {
+            get { return miscellaneousFilterTabContent; }
+            set { miscellaneousFilterTabContent = value; RaisePropertyChanged("MiscellaneousFilterTabContent"); }
+        }
         #endregion filterTabs 
 
         private List<League> leagues;
@@ -243,6 +257,10 @@ namespace PoeTradeDesktop.Controllers
                     if (MapFilterTabContent == null) MapFilterTabContent = new MapFilter(this);
                     ((MapFilterTabContent as MapFilter).DataContext as MapFilterControl).FilterEnabled = true;
                     break;
+                case 7:
+                    if (MiscellaneousFilterTabContent == null) MiscellaneousFilterTabContent = new MiscellaneousFilter(this);
+                    ((MiscellaneousFilterTabContent as MiscellaneousFilter).DataContext as MiscellaneousFilterControl).FilterEnabled = true;
+                    break;
             }
         }
 
@@ -255,7 +273,8 @@ namespace PoeTradeDesktop.Controllers
                 armour_filters = ArmourFilterEnabled ? ((ArmourFilterControl)((ArmourFilter)ArmourFilterTabContent).DataContext).GetFilter() : null,
                 socket_filters = SocketFilterEnabled ? ((SocketFilterControl)((SocketFilter)SocketFilterTabContent).DataContext).GetFilter() : null,
                 req_filters = RequirementFilterEnabled ? ((RequirementsFilterControl)((RequirementsFilter)RequirementFilterTabContent).DataContext).GetFilter() : null,
-                map_filters = MapFilterEnabled ? ((MapFilterControl)((MapFilter)MapFilterTabContent).DataContext).GetFilter() : null
+                map_filters = MapFilterEnabled ? ((MapFilterControl)((MapFilter)MapFilterTabContent).DataContext).GetFilter() : null,
+                misc_filters = MiscellaneousFilterEnabled ? ((MiscellaneousFilterControl)((MiscellaneousFilter)MiscellaneousFilterTabContent).DataContext).GetFilter() : null
             };
         }
 

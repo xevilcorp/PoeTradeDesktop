@@ -213,7 +213,6 @@ namespace PoeTradeDesktop.Controllers
             get { return searchResultLoadingVisibility; }
             set { searchResultLoadingVisibility = value; RaisePropertyChanged("SearchResultLoadingVisibility"); }
         }
-
         #endregion Properties
 
         public SearchControl()
@@ -298,12 +297,10 @@ namespace PoeTradeDesktop.Controllers
                 filters = AddTabFilters()
             };
 
-            
-
             PreSearch.Query = q;
 
             Sort sort = new Sort();
-            sort.Price = "desc";
+            sort.Price = "asc";
             PreSearch.Sort = sort;
 
             SearchResult sr = new SearchResult(); 

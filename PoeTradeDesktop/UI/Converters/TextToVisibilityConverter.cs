@@ -11,7 +11,7 @@ namespace PoeTradeDesktop.UI.Converters
         {
             if (value == null || string.IsNullOrEmpty(value.ToString()))
             {
-                return Visibility.Hidden;
+                return Visibility.Collapsed;
             }
             else
             {

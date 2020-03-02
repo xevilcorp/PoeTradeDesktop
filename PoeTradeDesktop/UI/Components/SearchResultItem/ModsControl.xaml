@@ -87,7 +87,7 @@
                             </Style>
                         </Border.Style>
                         <Grid HorizontalAlignment="Center">
-                            <TextBlock Width="{Binding ElementName=widthGrid, Path=ActualWidth}" ToolTipService.HasDropShadow="True" ToolTipService.Placement="Top" ToolTipService.HorizontalOffset="-40" ToolTipService.VerticalOffset="-15" ToolTipService.ShowDuration="10000" ToolTipService.InitialShowDelay="0" Foreground="#8888FF" TextTrimming="CharacterEllipsis" Text="{Binding}" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
+                            <TextBlock Width="{Binding ElementName=widthGrid, Path=ActualWidth}"  Foreground="#8888FF" TextTrimming="CharacterEllipsis" Text="{Binding}" TextAlignment="Center" FontSize="11" FontFamily="{StaticResource SmallCaps}" >
                                 <TextBlock.ToolTip>
                                     <ToolTip Template="{StaticResource modToolTip}" Tag="Implicit" Opened="ToolTipOpened">
                                         <StackPanel>
@@ -120,6 +120,7 @@
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
                                             <Condition Binding="{Binding ElementName=border, Path=IsMouseOver}" Value="True"/>
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=HasModInfo}" Value="True"/>
                                         </MultiDataTrigger.Conditions>
                                         <MultiDataTrigger.Setters>
                                             <Setter Property="Background" Value="#10ffffff"/>
@@ -135,7 +136,7 @@
                                     <ToolTip Template="{StaticResource modToolTip}" Tag="Explicit" Opened="ToolTipOpened">
                                         <StackPanel>
                                             <StackPanel/>
-                                            <Rectangle Height="1" Margin="0 4 0 4" Fill="#555555"/>
+                                            <Rectangle Visibility="Collapsed" Height="1" Margin="0 4 0 4" Fill="#555555"/>
                                             <TextBlock FontStyle="Italic" Text="{Binding}" Foreground="#8888FF" TextAlignment="Justify" TextWrapping="Wrap"/>
                                         </StackPanel>
                                     </ToolTip>

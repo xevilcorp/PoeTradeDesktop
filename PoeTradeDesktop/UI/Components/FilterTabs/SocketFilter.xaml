@@ -56,7 +56,7 @@
                 </ToggleButton.Style>
             </ToggleButton>
             <Button Command="{Binding HideContentCMD}"  Content="▲" FontSize="12"  Padding="10 0 10 0" FontFamily="Up"  DockPanel.Dock="Right"  Background="#FF32291B" Foreground="#FFC1B199" Style="{StaticResource cleanButtonWithBorder}"/>
-            <Label Content="ARMOUR FILTERS"  FontFamily="{StaticResource FontinBold}" Foreground="#FFE0CCBB" FontSize="12" Padding="4 7 0 5"  />
+            <Label Content="SOCKET FILTERS"  FontFamily="{StaticResource FontinBold}" Foreground="#FFE0CCBB" FontSize="12" Padding="4 7 0 5"  />
         </DockPanel>
 
         <Grid>

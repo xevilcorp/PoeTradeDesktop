@@ -16,7 +16,12 @@ namespace PoeTradeDesktop.Schemes.Searching._SearchResultItem
         public int FrameType { get; set; }
         public int MaxStackSize { get; set; }
         public int StackSize { get; set; }
+        public bool IsVaalGem { get; set; }
+        public string BaseTypeName { get; set; }
+        public string SecDescrText { get; set; }
+        public Item Hybrid { get; set; }
         public List<Property> Properties { get; set; }
+        public List<Property> AdditionalProperties { get; set; }
         public List<Socket> Sockets { get; set; }
         public List<Requirement> Requirements { get; set; }
         public List<string> ExplicitMods { get; set; }

@@ -8,5 +8,6 @@ namespace PoeTradeDesktop.Schemes.Searching._SearchResultItem._Item
         public List<List<string>> Values { get; set; }
         public int DisplayMode { get; set; }
         public int Type { get; set; }
+        public double Progress { get; set; }
     }
 }

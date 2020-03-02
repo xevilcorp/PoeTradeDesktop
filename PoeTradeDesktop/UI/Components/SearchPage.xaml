@@ -147,7 +147,7 @@
                     <Grid Width="{Binding ElementName=c1, Path=ActualWidth}">
                         <Image MaxWidth="48" HorizontalAlignment="Left" Cursor="Hand" x:Name="firstIcon">
                             <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseUp">
+                                <i:EventTrigger EventName="MouseDown">
                                     <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="1"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
@@ -176,7 +176,7 @@
                     <Grid Width="{Binding ElementName=c2, Path=ActualWidth}">
                         <Image HorizontalAlignment="Center" Cursor="Hand" Height="{Binding ElementName=firstIcon, Path=ActualHeight}">
                             <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseUp">
+                                <i:EventTrigger EventName="MouseDown">
                                     <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="2"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
@@ -205,7 +205,7 @@
                     <Grid Width="{Binding ElementName=c3, Path=ActualWidth}">
                         <Image HorizontalAlignment="Center" Cursor="Hand" Height="{Binding ElementName=firstIcon, Path=ActualHeight}">
                             <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseUp">
+                                <i:EventTrigger EventName="MouseDown">
                                     <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="3"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
@@ -234,7 +234,7 @@
                     <Grid Width="{Binding ElementName=c4, Path=ActualWidth}">
                         <Image HorizontalAlignment="Center" Cursor="Hand" Height="{Binding ElementName=firstIcon, Path=ActualHeight}">
                             <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseUp">
+                                <i:EventTrigger EventName="MouseDown">
                                     <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="4"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
@@ -263,7 +263,7 @@
                     <Grid Width="{Binding ElementName=c5, Path=ActualWidth}">
                         <Image HorizontalAlignment="Center" Cursor="Hand" Height="{Binding ElementName=firstIcon, Path=ActualHeight}">
                             <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseUp">
+                                <i:EventTrigger EventName="MouseDown">
                                     <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="5"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
@@ -292,7 +292,7 @@
                     <Grid Width="{Binding ElementName=c6, Path=ActualWidth}">
                         <Image HorizontalAlignment="Center" Cursor="Hand" Height="{Binding ElementName=firstIcon, Path=ActualHeight}">
                             <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseUp">
+                                <i:EventTrigger EventName="MouseDown">
                                     <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="6"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
@@ -321,7 +321,7 @@
                     <Grid Width="{Binding ElementName=c7, Path=ActualWidth}">
                         <Image HorizontalAlignment="Center" Cursor="Hand" Height="{Binding ElementName=firstIcon, Path=ActualHeight}">
                             <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseUp">
+                                <i:EventTrigger EventName="MouseDown">
                                     <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="7"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
@@ -422,7 +422,11 @@
                                         <StackPanel>
                                             <li:Properties Source="{Binding Item.Properties}"/>
                                             <li:Requirements SeparatorType="{Binding Item.FrameType}" ItemLevel="{Binding Item.ILvl}" RequirementSource="{Binding Item.Requirements}"/>
+                                            <li:ItemDescription Text="{Binding Item.SecDescrText}" SeparatorType="{Binding Item.FrameType}"/>
                                             <li:ModsControl SeparatorType="{Binding Item.FrameType}" ImplicitMods="{Binding Item.ImplicitMods}" CraftedMods="{Binding Item.CraftedMods}" EnchantMods="{Binding Item.EnchantMods}" ExplicitMods="{Binding Item.ExplicitMods}" Extended="{Binding Item.Extended}"/>
+                                            <li:ItemHybridPart SeparatorType="{Binding Item.FrameType}" Item="{Binding Item.Hybrid}"/>
+                                            <TextBlock TextAlignment="Center" Margin="0 -2 0 0" FontSize="13" Text="Corrupted" Foreground="#D20000" FontFamily="{StaticResource SmallCaps}" Visibility="{Binding Item.Corrupted, Converter={StaticResource BoolToVisibility}}"/>
+                                            <li:ItemAdditionalProperties Props="{Binding Item.AdditionalProperties}" SeparatorType="{Binding Item.FrameType}"/>
                                         </StackPanel>
                                         <li:StatsBar HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-3 2 0 0"  Extended="{Binding Item.Extended}"/>
                                     </Grid>
@@ -435,7 +439,7 @@
 
             <Label IsHitTestVisible="False"  HorizontalAlignment="Center"  VerticalAlignment="Center">
                 <Label.Style>
-                    <Style TargetType="Label" >
+                    <Style TargetType="Label">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsSearchResultLoading, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="True">
                                 <Setter Property="Content">

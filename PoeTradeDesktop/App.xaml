@@ -11,7 +11,8 @@
             <converter:PropertyTypeToBool x:Key="PropertyTypeToBool"/>
             <converter:ValueStyleToColor x:Key="ValueStyleToColor"/>
             <converter:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
-            
+            <converter:ListToVisibilityConverter x:Key="ListToVisibility"/>
+
             <FontFamily x:Key="SmallCaps">UI/fonts/#Fontin SmallCaps</FontFamily>
             <FontFamily x:Key="FontinBold">UI/fonts/#Fontin Bold</FontFamily>
             <FontFamily x:Key="FontinRegular">UI/fonts/#Fontin Regular</FontFamily>

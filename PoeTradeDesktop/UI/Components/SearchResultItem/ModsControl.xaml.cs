@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace PoeTradeDesktop.UI.Components.SearchResultItem
 {
@@ -49,6 +50,7 @@ namespace PoeTradeDesktop.UI.Components.SearchResultItem
             set { SetValue(ExtendedProperty, value); }
         }
 
+        public bool HasModInfo { get; set; }
 
         public ModsControl()
         {
@@ -66,6 +68,9 @@ namespace PoeTradeDesktop.UI.Components.SearchResultItem
             if (EnchantMods == null) panel.Children.Remove(separatorOne);
             if (ImplicitMods == null) panel.Children.Remove(separatorTwo);
             if (ExplicitMods == null && CraftedMods == null) panel.Children.Remove(separatorThree);
+
+            if (Extended != null && Extended.Mods != null) HasModInfo = true;
+
         }
 
         private List<int> JArrayToIntList(object jArray)
@@ -82,102 +87,105 @@ namespace PoeTradeDesktop.UI.Components.SearchResultItem
 
         private void ToolTipOpened(object sender, RoutedEventArgs e)
         {
-            ToolTip toolTip = (ToolTip)sender;
-
-            List<ModDetails> modsDetails= null;
-            List<List<object>> hashesMods = null;
-            List<string> mods = null;
-
-            switch (toolTip.Tag.ToString())
+            if(HasModInfo)
             {
-                case "Implicit":
-                    modsDetails = Extended.Mods.Implicit;
-                    hashesMods = Extended.Hashes.Implicit;
-                    mods = ImplicitMods;
-                    break;
-                case "Explicit":
-                    modsDetails = Extended.Mods.Explicit;
-                    hashesMods = Extended.Hashes.Explicit;
-                    mods = ExplicitMods;
-                    break;
-                case "Crafted":
-                    modsDetails = Extended.Mods.Crafted;
-                    hashesMods = Extended.Hashes.Crafted;
-                    mods = CraftedMods;
-                    break;
-                case "Enchant":
-                    modsDetails = Extended.Mods.Enchant;
-                    hashesMods = Extended.Hashes.Enchant;
-                    mods = EnchantMods;
-                    break;
+                ToolTip toolTip = (ToolTip)sender;
+
+                List<ModDetails> modsDetails = null;
+                List<List<object>> hashesMods = null;
+                List<string> mods = null;
+
+                switch (toolTip.Tag.ToString())
+                {
+                    case "Implicit":
+                        modsDetails = Extended.Mods.Implicit;
+                        hashesMods = Extended.Hashes.Implicit;
+                        mods = ImplicitMods;
+                        break;
+                    case "Explicit":
+                        modsDetails = Extended.Mods.Explicit;
+                        hashesMods = Extended.Hashes.Explicit;
+                        mods = ExplicitMods;
+                        break;
+                    case "Crafted":
+                        modsDetails = Extended.Mods.Crafted;
+                        hashesMods = Extended.Hashes.Crafted;
+                        mods = CraftedMods;
+                        break;
+                    case "Enchant":
+                        modsDetails = Extended.Mods.Enchant;
+                        hashesMods = Extended.Hashes.Enchant;
+                        mods = EnchantMods;
+                        break;
+                }
+
+                int modIndex = mods.IndexOf(toolTip.DataContext.ToString());
+
+                string modId = hashesMods[modIndex][0].ToString();
+
+                List<int> modDetaisIndexes = JArrayToIntList(hashesMods[modIndex][1]);
+
+                StackPanel panel = ((((StackPanel)toolTip.Content).Children[0]) as StackPanel);
+                panel.Children.Clear();
+
+                Rectangle rec = ((((StackPanel)toolTip.Content).Children[1]) as Rectangle);
+                rec.Visibility = Visibility.Visible;
+
+                foreach (int modInfoIndex in modDetaisIndexes)
+                {
+                    string modTierType = modsDetails[modInfoIndex].Tier;
+                    string modName = modsDetails[modInfoIndex].Name;
+                    List<Magnitude> modMagnitudes = modsDetails[modInfoIndex].Magnitudes.FindAll(x => x.Hash == modId); ;
+
+                    Brush lightBlue = new SolidColorBrush(Color.FromRgb(0x7A, 0xAF, 0xF1));
+                    Brush lightPurple = new SolidColorBrush(Color.FromRgb(0x7A, 0xAF, 0xF1));
+                    Brush lightRed = new SolidColorBrush(Color.FromRgb(0xEC, 0x76, 0x76));
+                    Brush lowWhite = new SolidColorBrush(Color.FromArgb(0x4F, 0xFF, 0xFF, 0xFF));
+
+                    Brush tierColor = null; string modType = "";
+
+                    if (modTierType.IndexOf('S') != -1) { tierColor = lightPurple; modType = "SULFIX"; }
+                    else if ((modTierType.IndexOf('P') != -1)) { tierColor = lightRed; modType = "PREFIX"; }
+                    else if ((modTierType.IndexOf('R') != -1)) { tierColor = lightBlue; modType = "CRAFTED"; }
+                    else if (toolTip.Tag.ToString() == "Enchant") { tierColor = lightPurple; modType = "ENCHANTED"; }
+                    else { tierColor = lightPurple; modType = ""; }
+
+                    TextBlock tb = new TextBlock();
+                    tb.HorizontalAlignment = HorizontalAlignment.Left;
+
+                    if (modType != "") tb.Inlines.Add(new Run { Text = modType, Foreground = tierColor, FontSize = 11 });
+
+                    if (modTierType != "" && modTierType.Length > 1)
+                    {
+                        tb.Inlines.Add(new Run { Text = " | ", Foreground = lowWhite });
+                        tb.Inlines.Add(new Run { Text = "TIER: ", Foreground = Brushes.White, FontSize = 11 });
+                        tb.Inlines.Add(new Run { Text = modTierType.Substring(1, 1), Foreground = Brushes.White });
+                    }
+
+                    if (modType != "") tb.Inlines.Add(new Run { Text = " | ", Foreground = lowWhite });
+                    tb.Inlines.Add(new Run { Text = "MAGNITUDE: ", Foreground = Brushes.White, FontSize = 11 });
+                    string modMagnitudeStr = "";
+                    for (int k = 0; k < modMagnitudes.Count; k++)
+                    {
+                        if (k > 0) modMagnitudeStr += " to ";
+
+                        Magnitude modMagnitude = modMagnitudes[k];
+                        if (modMagnitude.Min != modMagnitude.Max) modMagnitudeStr += modMagnitude.Min.ToString() + "-" + modMagnitude.Max.ToString();
+                        else modMagnitudeStr += modMagnitude.Min.ToString();
+
+                    }
+                    tb.Inlines.Add(new Run { Text = "[" + modMagnitudeStr + "]", Foreground = Brushes.Gold });
+
+                    if (modName != "")
+                    {
+                        tb.Inlines.Add(new Run { Text = " | ", Foreground = Brushes.White });
+                        tb.Inlines.Add(new Run { Text = modName, Foreground = tierColor });
+                    }
+
+                    panel.Children.Add(tb);
+                }
             }
-
-            int modIndex = mods.IndexOf(toolTip.DataContext.ToString());
-
-            string modId = hashesMods[modIndex][0].ToString();
-
-            List<int> modDetaisIndexes = JArrayToIntList(hashesMods[modIndex][1]);
-
-            StackPanel panel = ((((StackPanel)toolTip.Content).Children[0]) as StackPanel);
-            panel.Children.Clear();
-
-            foreach (int modInfoIndex in modDetaisIndexes)
-            {
-                string modTierType = modsDetails[modInfoIndex].Tier;
-                string modName = modsDetails[modInfoIndex].Name;
-                List<Magnitude> modMagnitudes = modsDetails[modInfoIndex].Magnitudes.FindAll(x => x.Hash == modId); ;
-
-                Brush lightBlue = new SolidColorBrush(Color.FromRgb(0x7A, 0xAF, 0xF1));
-                Brush lightPurple= new SolidColorBrush(Color.FromRgb(0x7A, 0xAF, 0xF1));
-                Brush lightRed = new SolidColorBrush(Color.FromRgb(0xEC, 0x76, 0x76));
-                Brush lowWhite = new SolidColorBrush(Color.FromArgb(0x4F, 0xFF, 0xFF, 0xFF));
-
-                Brush tierColor = null; string modType = "";
-
-                if (modTierType.IndexOf('S') != -1) { tierColor = lightPurple; modType = "SULFIX"; }
-                else if ((modTierType.IndexOf('P') != -1)) { tierColor = lightRed; modType = "PREFIX"; }
-                else if((modTierType.IndexOf('R') != -1)) { tierColor = lightBlue; modType = "CRAFTED"; }
-                else if(toolTip.Tag.ToString() == "Enchant") { tierColor = lightPurple; modType = "ENCHANTED"; }
-                else { tierColor = lightPurple; modType = ""; }
-
-                TextBlock tb = new TextBlock();
-                tb.HorizontalAlignment = HorizontalAlignment.Left;
-
-                if (modType != "")
-                tb.Inlines.Add(new Run { Text = modType, Foreground = tierColor, FontSize = 11});
-
-                if(modTierType != "" && modTierType.Length > 1)
-                {
-                    tb.Inlines.Add(new Run { Text = " | ", Foreground = lowWhite });
-                    tb.Inlines.Add(new Run { Text = "TIER: ", Foreground = Brushes.White, FontSize = 11 });
-                    tb.Inlines.Add(new Run { Text = modTierType.Substring(1, 1), Foreground = Brushes.White });
-                }
-             
-                if(modType != "")
-                tb.Inlines.Add(new Run { Text = " | ", Foreground = lowWhite });
-                tb.Inlines.Add(new Run { Text = "MAGNITUDE: ", Foreground = Brushes.White, FontSize = 11 });
-                string modMagnitudeStr = "";
-                for (int k = 0; k < modMagnitudes.Count; k++)
-                {
-                    if (k > 0) modMagnitudeStr += " to ";
-
-                    Magnitude modMagnitude = modMagnitudes[k];
-                    if(modMagnitude.Min != modMagnitude.Max)
-                    modMagnitudeStr += modMagnitude.Min.ToString() + "-" + modMagnitude.Max.ToString();
-                    else 
-                    modMagnitudeStr += modMagnitude.Min.ToString();
-
-                }
-                tb.Inlines.Add(new Run { Text = "[" + modMagnitudeStr + "]", Foreground = Brushes.Gold });
-                
-                if(modName != "")
-                {
-                    tb.Inlines.Add(new Run { Text = " | ", Foreground = Brushes.White });
-                    tb.Inlines.Add(new Run { Text = modName, Foreground = tierColor });
-                }
-               
-                panel.Children.Add(tb);
-            }
+           
         }
 
         public static readonly DependencyProperty ExplicitModsProperty = DependencyProperty.Register("ExplicitMods", typeof(List<string>), typeof(ModsControl));

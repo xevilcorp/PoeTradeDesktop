@@ -126,6 +126,15 @@
     <Compile Include="UI\Components\Generic\NumberBox.xaml.cs">
       <DependentUpon>NumberBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Components\SearchResultItem\ItemAdditionalProperties.xaml.cs">
+      <DependentUpon>ItemAdditionalProperties.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\SearchResultItem\ItemDescription.xaml.cs">
+      <DependentUpon>ItemDescription.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\SearchResultItem\ItemHybridPart.xaml.cs">
+      <DependentUpon>ItemHybridPart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Components\SearchResultItem\ModsControl.xaml.cs">
       <DependentUpon>ModsControl.xaml</DependentUpon>
     </Compile>
@@ -146,6 +155,7 @@
     </Compile>
     <Compile Include="UI\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="UI\Converters\FrameTypeToSeparator.cs" />
+    <Compile Include="UI\Converters\ListToVisibilityConverter.cs" />
     <Compile Include="UI\Converters\PropertyTypeToBool.cs" />
     <Compile Include="UI\Converters\TextToVisibilityConverter.cs" />
     <Compile Include="UI\Converters\ValueStyleToColor.cs" />
@@ -204,6 +214,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Components\Generic\NumberBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\SearchResultItem\ItemAdditionalProperties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\SearchResultItem\ItemDescription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\SearchResultItem\ItemHybridPart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

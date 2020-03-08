@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,7 +8,7 @@
     <ProjectGuid>{67A5C5B3-8382-49D2-B487-6BE70E525C17}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>PoeTradeDesktop</RootNamespace>
-    <AssemblyName>PoeTradeDesktop</AssemblyName>
+    <AssemblyName>AuctionHouse</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -16,6 +17,22 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\evilcorp\Desktop\Virus\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,7 +53,31 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>hoppekant_4uS_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>PoeTradeDesktop.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>4B4FD3DCA6C1722E9FB673B6916B6E7698B68794</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>PoeTradeDesktop_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
@@ -45,8 +86,12 @@
     </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.112.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.112.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Common, Version=4.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Drawing.Common.4.7.0\lib\net461\System.Drawing.Common.dll</HintPath>
@@ -75,15 +120,21 @@
     <Compile Include="Controllers\FilterTabs\MiscellaneousFilterControl.cs" />
     <Compile Include="Controllers\FilterTabs\RequirementsFilterControl.cs" />
     <Compile Include="Controllers\FilterTabs\SocketFilterControl.cs" />
+    <Compile Include="Controllers\FilterTabs\StatsFilterControl.cs" />
     <Compile Include="Controllers\FilterTabs\WeaponFilterControl.cs" />
     <Compile Include="Controllers\SearchControl.cs" />
     <Compile Include="Schemes\Enums\DisplayMode.cs" />
     <Compile Include="Schemes\Enums\FrameType.cs" />
+    <Compile Include="Schemes\Enums\ModTypes.cs" />
     <Compile Include="Schemes\Enums\PropertyType.cs" />
     <Compile Include="Schemes\Enums\ValueStyle.cs" />
     <Compile Include="Schemes\Filtering\ItemRarity.cs" />
     <Compile Include="Schemes\Filtering\MapSeries.cs" />
     <Compile Include="Schemes\Filtering\PropertyMinMax.cs" />
+    <Compile Include="Schemes\Filtering\PropertyMinMaxWeight.cs" />
+    <Compile Include="Schemes\Filtering\Stat.cs" />
+    <Compile Include="Schemes\Filtering\StatGroup.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Item\HybridItem.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\Influences.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Crafted.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\Enchant.cs" />
@@ -103,8 +154,11 @@
     <Compile Include="Schemes\Searching\_SearchResultItem\_Item\_Extended\_Mods\ModDetails.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Listing\Account.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\Item.cs" />
+    <Compile Include="Schemes\Searching\_SearchResultItem\_Listing\OnlineInfo.cs" />
     <Compile Include="Schemes\Searching\_SearchResultItem\_Listing\Price.cs" />
     <Compile Include="Schemes\Filtering\Sort.cs" />
+    <Compile Include="Schemes\StaticInfo.cs" />
+    <Compile Include="Schemes\StaticInfoFolder.cs" />
     <Compile Include="UI\Components\FilterTabs\ArmourFilter.xaml.cs">
       <DependentUpon>ArmourFilter.xaml</DependentUpon>
     </Compile>
@@ -120,45 +174,61 @@
     <Compile Include="UI\Components\FilterTabs\SocketFilter.xaml.cs">
       <DependentUpon>SocketFilter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Components\FilterTabs\StatGroupFilter.xaml.cs">
+      <DependentUpon>StatGroupFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\FilterTabs\StatsFilter.xaml.cs">
+      <DependentUpon>StatsFilter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Components\FilterTabs\WeaponFilter.xaml.cs">
       <DependentUpon>WeaponFilter.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Components\Generic\NumberBox.xaml.cs">
       <DependentUpon>NumberBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Components\SearchResultItem\ItemAdditionalProperties.xaml.cs">
+    <Compile Include="UI\Components\Generic\UICollor.cs" />
+    <Compile Include="UI\Components\SearchItemView\ItemAdditionalProperties.xaml.cs">
       <DependentUpon>ItemAdditionalProperties.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Components\SearchResultItem\ItemDescription.xaml.cs">
+    <Compile Include="UI\Components\SearchItemView\ItemDescription.xaml.cs">
       <DependentUpon>ItemDescription.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Components\SearchResultItem\ItemHybridPart.xaml.cs">
-      <DependentUpon>ItemHybridPart.xaml</DependentUpon>
+    <Compile Include="UI\Components\SearchItemView\ItemHybridTitle.xaml.cs">
+      <DependentUpon>ItemHybridTitle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Components\SearchResultItem\ModsControl.xaml.cs">
-      <DependentUpon>ModsControl.xaml</DependentUpon>
+    <Compile Include="UI\Components\SearchItemView\ItemListingFeatures.xaml.cs">
+      <DependentUpon>ItemListingFeatures.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Components\SearchResultItem\Properties.xaml.cs">
-      <DependentUpon>Properties.xaml</DependentUpon>
+    <Compile Include="UI\Components\SearchItemView\ItemMods.xaml.cs">
+      <DependentUpon>ItemMods.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Components\SearchResultItem\Requirements.xaml.cs">
-      <DependentUpon>Requirements.xaml</DependentUpon>
+    <Compile Include="UI\Components\SearchItemView\ItemPrice.xaml.cs">
+      <DependentUpon>ItemPrice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Components\SearchResultItem\Sockets.xaml.cs">
+    <Compile Include="UI\Components\SearchItemView\ItemSeparator.xaml.cs">
+      <DependentUpon>ItemSeparator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\SearchItemView\ItemView.xaml.cs">
+      <DependentUpon>ItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\SearchItemView\ItemProperties.xaml.cs">
+      <DependentUpon>ItemProperties.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\SearchItemView\ItemRequirements.xaml.cs">
+      <DependentUpon>ItemRequirements.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\SearchItemView\Sockets.xaml.cs">
       <DependentUpon>Sockets.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Components\SearchResultItem\StatsBar.xaml.cs">
-      <DependentUpon>StatsBar.xaml</DependentUpon>
+    <Compile Include="UI\Components\SearchItemView\ItemStatsBar.xaml.cs">
+      <DependentUpon>ItemStatsBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Components\SearchResultItem\TitleFrame.xaml.cs">
+    <Compile Include="UI\Components\SearchItemView\TitleFrame.xaml.cs">
       <DependentUpon>TitleFrame.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="UI\Converters\FrameTypeToSeparator.cs" />
     <Compile Include="UI\Converters\ListToVisibilityConverter.cs" />
-    <Compile Include="UI\Converters\PropertyTypeToBool.cs" />
     <Compile Include="UI\Converters\TextToVisibilityConverter.cs" />
-    <Compile Include="UI\Converters\ValueStyleToColor.cs" />
     <Compile Include="UI\Custom\ImageBox.cs" />
     <Compile Include="UI\Custom\TextHighlightTextBlock.cs" />
     <Compile Include="UI\Components\WindowParts\ContentBackground.xaml.cs">
@@ -189,6 +259,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Util\Benchmark.cs" />
+    <Compile Include="Util\DB.cs" />
     <Page Include="UI\Components\FilterTabs\ArmourFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -209,6 +280,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Components\FilterTabs\StatGroupFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\FilterTabs\StatsFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Components\FilterTabs\WeaponFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -217,39 +296,55 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Components\SearchResultItem\ItemAdditionalProperties.xaml">
+    <Page Include="UI\Components\SearchItemView\ItemAdditionalProperties.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Components\SearchResultItem\ItemDescription.xaml">
+    <Page Include="UI\Components\SearchItemView\ItemDescription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Components\SearchResultItem\ItemHybridPart.xaml">
+    <Page Include="UI\Components\SearchItemView\ItemHybridTitle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Components\SearchResultItem\ModsControl.xaml">
+    <Page Include="UI\Components\SearchItemView\ItemListingFeatures.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Components\SearchResultItem\Properties.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Components\SearchResultItem\Requirements.xaml">
+    <Page Include="UI\Components\SearchItemView\ItemMods.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\Components\SearchResultItem\Sockets.xaml">
+    <Page Include="UI\Components\SearchItemView\ItemPrice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Components\SearchResultItem\StatsBar.xaml">
+    <Page Include="UI\Components\SearchItemView\ItemSeparator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Components\SearchResultItem\TitleFrame.xaml">
+    <Page Include="UI\Components\SearchItemView\ItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\SearchItemView\ItemProperties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\SearchItemView\ItemRequirements.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Components\SearchItemView\Sockets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\SearchItemView\ItemStatsBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Components\SearchItemView\TitleFrame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -342,6 +437,7 @@
     <Resource Include="UI\Fonts\Fontin-SmallCaps.ttf" />
     <Resource Include="UI\Fonts\Fontin-Bold.ttf" />
     <None Include="packages.config" />
+    <None Include="PoeTradeDesktop_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -590,6 +686,30 @@
     <Resource Include="UI\Images\symbol_shaper.png" />
     <Resource Include="UI\Images\symbol_warlord.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="hoppekant_4uS_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets')" />
 </Project>

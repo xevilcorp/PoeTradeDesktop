@@ -5,5 +5,6 @@
         public string Name { get; set; }
         public string LastCharacterName { get; set; }
         public string Language { get; set; }
+        public OnlineInfo Online { get; set; }
     }
 }

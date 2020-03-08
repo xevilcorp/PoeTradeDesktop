@@ -114,6 +114,20 @@ namespace PoeTradeDesktop.Controllers
             get { return miscellaneousFilterTabContent; }
             set { miscellaneousFilterTabContent = value; RaisePropertyChanged("MiscellaneousFilterTabContent"); }
         }
+
+        private bool statsFilterEnabled;
+        public bool StatsFilterEnabled
+        {
+            get { return statsFilterEnabled; }
+            set { statsFilterEnabled = value; RaisePropertyChanged("StatsFilterEnabled"); }
+        }
+
+        private object statsFilterTabContent;
+        public object StatsFilterTabContent
+        {
+            get { return statsFilterTabContent; }
+            set { statsFilterTabContent = value; RaisePropertyChanged("StatsFilterTabContent"); }
+        }
         #endregion filterTabs 
 
         private List<League> leagues;
@@ -224,6 +238,8 @@ namespace PoeTradeDesktop.Controllers
             CheckSelectionCMD = new RelayCommand(CheckSelection);
             SearchCMD = new RelayCommand(Search);
             SearchResult = new SearchResult();
+
+            Task.Run(() => StaticInfoFolder.LoadPaths());
         }
 
         #region Commands
@@ -260,6 +276,10 @@ namespace PoeTradeDesktop.Controllers
                     if (MiscellaneousFilterTabContent == null) MiscellaneousFilterTabContent = new MiscellaneousFilter(this);
                     ((MiscellaneousFilterTabContent as MiscellaneousFilter).DataContext as MiscellaneousFilterControl).FilterEnabled = true;
                     break;
+                case 8:
+                    if (StatsFilterTabContent == null) StatsFilterTabContent = new StatsFilter(this);
+                    ((StatsFilterTabContent as StatsFilter).DataContext as StatsFilterControl).FilterEnabled = true;
+                    break;
             }
         }
 
@@ -273,7 +293,7 @@ namespace PoeTradeDesktop.Controllers
                 socket_filters = SocketFilterEnabled ? ((SocketFilterControl)((SocketFilter)SocketFilterTabContent).DataContext).GetFilter() : null,
                 req_filters = RequirementFilterEnabled ? ((RequirementsFilterControl)((RequirementsFilter)RequirementFilterTabContent).DataContext).GetFilter() : null,
                 map_filters = MapFilterEnabled ? ((MapFilterControl)((MapFilter)MapFilterTabContent).DataContext).GetFilter() : null,
-                misc_filters = MiscellaneousFilterEnabled ? ((MiscellaneousFilterControl)((MiscellaneousFilter)MiscellaneousFilterTabContent).DataContext).GetFilter() : null
+                misc_filters = MiscellaneousFilterEnabled ? ((MiscellaneousFilterControl)((MiscellaneousFilter)MiscellaneousFilterTabContent).DataContext).GetFilter() : null,
             };
         }
 
@@ -294,7 +314,8 @@ namespace PoeTradeDesktop.Controllers
                 status = new {
                     option = SelectedOnlineOption == 0 ? "online" : "any"
                 },
-                filters = AddTabFilters()
+                filters = AddTabFilters(),
+                stats = StatsFilterEnabled ? ((StatsFilterControl)((StatsFilter)StatsFilterTabContent).DataContext).GetFilter() : null
             };
 
             PreSearch.Query = q;
@@ -314,8 +335,6 @@ namespace PoeTradeDesktop.Controllers
             await SearchResult.LoadMore();
             IsSearchResultLoading = false;
         }
-
-
         #endregion Commands
 
         #region Functions
@@ -326,7 +345,7 @@ namespace PoeTradeDesktop.Controllers
 
         private async void LoadSearchItemsAsync()
         {
-            SearchTextItems = await SearchItem.GetSearchItems();
+            SearchTextItems = await SearchItem.GetSearchItemsAsync();
         }
 
         private async void PerformSearchAsync()
@@ -340,6 +359,7 @@ namespace PoeTradeDesktop.Controllers
             if (SearchText.Trim() != "")
             {
                 List<SearchItem> si = SearchTextItems.Where(x => x.Text.ToUpper().IndexOf(SearchText.ToUpper()) != -1).ToList();
+                //List<SearchItem> si = SearchItem.GetSearchItems(SearchText);
                 if (si.Count != 0)
                 {
                     if (SelectedSearchTextResult != null)

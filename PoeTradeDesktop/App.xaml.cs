@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PoeTradeDesktop.Util;
+using System;
 using System.IO;
 using System.Net;
 using System.Windows;
@@ -9,6 +10,7 @@ namespace PoeTradeDesktop
     {
         public App()
         {
+          //  Db.Context = new DatabaseContext();
             FileInfo file = new FileInfo(Path.Combine(Environment.CurrentDirectory, $@"ImageCache\"));
             file.Directory.Create();
 
@@ -17,7 +19,7 @@ namespace PoeTradeDesktop
 
         private void UpdateData()
         {
-            string folderPath = Path.Combine(Environment.CurrentDirectory, $@"Data\");
+            /*string folderPath = Path.Combine(Environment.CurrentDirectory, $@"Data\");
             FileInfo file = new FileInfo(folderPath);
             file.Directory.Create();
 
@@ -34,7 +36,7 @@ namespace PoeTradeDesktop
 
             url = "https://raw.githubusercontent.com/xEvilCorp/PoeTradeDesktop/master/PoeTradeDesktop/Data/map-series.json";
             path = Path.Combine(folderPath, "map-series.json");
-            client.DownloadFile(url, path);
+            client.DownloadFile(url, path);*/
         }
     }
 }

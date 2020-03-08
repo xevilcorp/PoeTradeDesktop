@@ -1,5 +1,4 @@
-﻿using PoeTradeDesktop.Schemes.Searching;
-using PoeTradeDesktop.Schemes.Searching._SearchResultItem;
+﻿using PoeTradeDesktop.Schemes.Searching._SearchResultItem;
 
 namespace PoeTradeDesktop.Schemes.Searching
 {

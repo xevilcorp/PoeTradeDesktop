@@ -6,10 +6,13 @@
              StartupUri="UI/Main.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <ControlTemplate TargetType="ToolTip" x:Key="modToolTip">
+                <Border Background="#121212" MaxWidth="360" Padding="8" BorderThickness="1" BorderBrush="#444444">
+                    <ContentPresenter/>
+                </Border>
+            </ControlTemplate>
+            
             <converter:TextToVisibilityConverter x:Key="TextToVisibility"/>
-            <converter:FrameTypeToSeparator x:Key="FrameTypeToSeparator"/>
-            <converter:PropertyTypeToBool x:Key="PropertyTypeToBool"/>
-            <converter:ValueStyleToColor x:Key="ValueStyleToColor"/>
             <converter:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
             <converter:ListToVisibilityConverter x:Key="ListToVisibility"/>
 

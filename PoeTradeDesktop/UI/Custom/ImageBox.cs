@@ -52,6 +52,7 @@ namespace PoeTradeDesktop.UI.Custom
                 WebResponse response = request.GetResponse();
                 Stream responseStream = response.GetResponseStream();
                 Bitmap bmp = new Bitmap(responseStream);
+                
                 bmp.Save(path);
             }
 

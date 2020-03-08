@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PoeTradeDesktop.Schemes.Enums
+﻿namespace PoeTradeDesktop.Schemes.Enums
 {
-    public enum ValueStyle : int
+    public enum ValueStyle : byte
     {
         Default = 0,
         Augmented = 1,

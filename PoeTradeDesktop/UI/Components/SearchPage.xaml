@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:c="clr-namespace:PoeTradeDesktop.Controllers"
-             xmlns:li="clr-namespace:PoeTradeDesktop.UI.Components.SearchResultItem"
-             mc:Ignorable="d"
+             xmlns:li="clr-namespace:PoeTradeDesktop.UI.Components.SearchItemView"
              xmlns:ic="clr-namespace:PoeTradeDesktop.UI.Custom"
+             mc:Ignorable="d"
              RenderOptions.BitmapScalingMode="HighQuality"
              RenderOptions.EdgeMode="Aliased"
              TextOptions.TextFormattingMode="Display"
@@ -345,12 +345,34 @@
                 </TabItem.Header>
                 <Frame Content="{Binding MiscellaneousFilterTabContent}" Margin="-1,2,-2,1"/>
             </TabItem>
-            <TabItem Style="{StaticResource filterTabItem}">
+               <TabItem Style="{StaticResource filterTabItem}">
                 <TabItem.Header>
                     <Grid Width="{Binding ElementName=c8, Path=ActualWidth}">
-                        <Image HorizontalAlignment="Center" Cursor="Hand" Source="../Images/filter_stats_icon_bw.png" Height="{Binding ElementName=firstIcon, Path=ActualHeight}"/>
+                        <Image HorizontalAlignment="Center" Cursor="Hand" Height="{Binding ElementName=firstIcon, Path=ActualHeight}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDown">
+                                    <i:InvokeCommandAction Command="{Binding CheckSelectionCMD}" CommandParameter="8"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding StatsFilterEnabled, FallbackValue=False}" Value="False">
+                                            <Setter Property="Source" Value="../Images/filter_stats_icon_bw.png"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding StatsFilterEnabled}" Value="True">
+                                            <Setter Property="Source" Value="../Images/filter_stats_icon.png"/>
+                                        </DataTrigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.9"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
                     </Grid>
                 </TabItem.Header>
+                <Frame Content="{Binding StatsFilterTabContent}" Margin="-1,2,-2,1"/>
             </TabItem>
             <TabItem Style="{StaticResource filterTabItem}" >
                 <TabItem.Header>
@@ -385,54 +407,15 @@
         </Border>
 
         <Grid>
-            <ListView HorizontalContentAlignment="Stretch" AlternationCount="2" ItemsSource="{Binding SearchResult.Items, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" VirtualizingPanel.ScrollUnit="Pixel" Name="lv" ScrollViewer.ScrollChanged="lv_ScrollChanged" BorderThickness="0">
+            <ListView HorizontalContentAlignment="Stretch" Margin="-1 2 -1 0" AlternationCount="2" ItemsSource="{Binding SearchResult.Items, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" VirtualizingPanel.ScrollUnit="Pixel" Name="lv" ScrollViewer.ScrollChanged="lv_ScrollChanged" BorderThickness="0">
                 <ListView.Resources>
                     <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
-                        <Style.Triggers>
-                            <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
-                                <Setter Property="Background" Value="#15ffffff" />
-                            </Trigger>
-                            <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
-                                <Setter Property="Background" Value="#08ffffff" />
-                            </Trigger>
-                        </Style.Triggers>
+                        <Setter Property="Margin" Value="-1 0 3 3"/>
                     </Style>
                 </ListView.Resources>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition MinWidth="94" Width="1*"/>
-                                <ColumnDefinition Width="3*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0" Margin="-5 0 -5 0">
-                                <ic:ImageBox CacheSource="{Binding Item.Icon}" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="NearestNeighbor"  Stretch="None" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
-                                    <Image.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
-                                        </TransformGroup>
-                                    </Image.RenderTransform>
-                                </ic:ImageBox>
-                                <li:Sockets Source="{Binding Item.Sockets}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Grid>
-                            <StackPanel Grid.Column="1">
-                                <li:TitleFrame ItemName="{Binding Item.Name}" Influences="{Binding Item.Influences}" ItemFrameType="{Binding Item.FrameType}" ItemTypeLine="{Binding Item.TypeLine}" />
-                                <Border Background="#ff000000" Padding="3">
-                                    <Grid>
-                                        <StackPanel>
-                                            <li:Properties Source="{Binding Item.Properties}"/>
-                                            <li:Requirements SeparatorType="{Binding Item.FrameType}" ItemLevel="{Binding Item.ILvl}" RequirementSource="{Binding Item.Requirements}"/>
-                                            <li:ItemDescription Text="{Binding Item.SecDescrText}" SeparatorType="{Binding Item.FrameType}"/>
-                                            <li:ModsControl SeparatorType="{Binding Item.FrameType}" ImplicitMods="{Binding Item.ImplicitMods}" CraftedMods="{Binding Item.CraftedMods}" EnchantMods="{Binding Item.EnchantMods}" ExplicitMods="{Binding Item.ExplicitMods}" Extended="{Binding Item.Extended}"/>
-                                            <li:ItemHybridPart SeparatorType="{Binding Item.FrameType}" Item="{Binding Item.Hybrid}"/>
-                                            <TextBlock TextAlignment="Center" Margin="0 -2 0 0" FontSize="13" Text="Corrupted" Foreground="#D20000" FontFamily="{StaticResource SmallCaps}" Visibility="{Binding Item.Corrupted, Converter={StaticResource BoolToVisibility}}"/>
-                                            <li:ItemAdditionalProperties Props="{Binding Item.AdditionalProperties}" SeparatorType="{Binding Item.FrameType}"/>
-                                        </StackPanel>
-                                        <li:StatsBar HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-3 2 0 0"  Extended="{Binding Item.Extended}"/>
-                                    </Grid>
-                                </Border>
-                            </StackPanel>
-                        </Grid>
+                        <li:ItemView Item="{Binding Item}" Listing="{Binding Listing}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
